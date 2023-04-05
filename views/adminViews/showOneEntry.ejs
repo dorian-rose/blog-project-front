@@ -1,0 +1,13 @@
+<% - include('./adminTemplates/headerAdmin') %><%- include('./adminTemplates/navAdmin') %> 
+<section>
+<article>
+  <h1><%= entry.title %></h1>
+  <p><%= entry.formatdate %></p>
+  <h4><%= entry.category %></h4>
+  <img src="" alt="" />
+  <p>entry.content</p>
+</article>
+ <a class="entry-buttons" href=<%= `/admin/form/update/${entry.title.replaceAll(" ", "_")}/${entry.email} `%>>Update</a> 
+  <a class="entry-buttons" href=<%= `/admin/delete/${entry.title.replaceAll(" ", "_")}/${entry.email} `%> >Delete</a> 
+</section>
+<% - include("./adminTemplates/footerAdmin") %>

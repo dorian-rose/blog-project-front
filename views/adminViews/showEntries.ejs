@@ -1,0 +1,20 @@
+<%- include('./adminTemplates/headerAdmin') %> <%- include('./adminTemplates/navAdmin') %> 
+<h1>Your articles</h1>
+
+<section class="entries-admin">
+  <a class="entry-buttons" href=<%= `/admin/form/new/${entries[0].email} `%>>Add new article</a> 
+  <% entries.forEach(element => { %>
+  <article class="entry-card">
+    <p><%= element.formatdate %></p>
+    <h4><%=element.title %></h4>
+    <h6><%= element.extract %></h6>
+    <p> <%= element.email %></p>
+    <img src=""alt="">
+
+    <a class="entry-buttons" href=<%= `/admin/entry/${element.title.replaceAll(" ", "_")}/${element.email} `%>>View</a> 
+    <a class="entry-buttons" href=<%= `/admin/form/update/${element.title.replaceAll(" ", "_")}/${element.email} `%>>Update</a> 
+    <a class="entry-buttons" href=<%= `/admin/delete/${element.title.replaceAll(" ", "_")}/${element.email} `%> >Delete</a> 
+  </article>
+  <% }) %>
+</section>
+<%- include("./adminTemplates/footerAdmin") %>

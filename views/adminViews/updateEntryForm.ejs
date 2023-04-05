@@ -1,0 +1,47 @@
+<% - include('./adminTemplates/headerAdmin') %><%- include('./adminTemplates/navAdmin') %> 
+<h1>Update Entry</h1>
+<article>
+<h2> <%= entry.title %></h2>
+<p> <%= entry.formatdate %></p>
+<form
+  id="update-entry"
+  action=<%= `/admin/update/${entry.title.replaceAll(" ","_")}/${entry.email}` %>
+    method="post" >
+  <input
+    type="text"
+    name="title"
+    id="title"
+   value= "<%= entry.title %>"
+  />
+  
+  
+  <input
+    type="text"
+    name="extract"
+    id="extract"
+    value= "<%= entry.extract %>"
+  />
+  <textarea name="content" id="content">
+<%= entry.content %></textarea
+  >
+   <input
+    type="text"
+    name="image"
+    id="image"
+    value= "<%= entry.image %>"
+  />
+  <input
+    type="text"
+    name="category"
+    id="category"
+    value= "<%= entry.category %>"
+  />
+  
+  <input type="submit" />
+</form >
+ <a class="entry-buttons" href=<%= `/admin/delete/${entry.title.replaceAll(" ", "_")}/${entry.email} `%> >Delete</a> 
+ 
+</article>
+ 
+ <% - include("./adminTemplates/footerAdmin") %>
+

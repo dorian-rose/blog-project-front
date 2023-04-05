@@ -1,0 +1,48 @@
+<%- include('./adminTemplates/headerAdmin') %> <%- include('./adminTemplates/navAdmin') %> 
+<h1>New Entry</h1>
+
+<article>
+
+<form
+  id="create-entry"
+  action=<%= `/admin/create/${email}` %>
+    method="post" >
+  <input
+    type="text"
+    name="title"
+    id="title"
+   placeholder= "Title of article"
+  />
+  
+  
+  <input
+    type="text"
+    name="extract"
+    id="extract"
+    placeholder= "Title extract"
+  />
+  <textarea name="content" id="content">
+Article content</textarea
+  >
+   <input
+    type="text"
+    name="image"
+    id="image"
+    placeholder= "Image"
+  />
+  <input
+    type="text"
+    name="category"
+    id="category"
+    placeholder= "Article category"
+  />
+  
+  <input type="submit" />
+</form >
+ 
+</article>
+<a id="back-button" href=<%= `/admin/entries/${email}/1`%>
+  >Back to all services</a
+>
+<%- include("./adminTemplates/footerAdmin") %>
+
