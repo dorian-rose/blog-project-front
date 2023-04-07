@@ -6,7 +6,7 @@
 <form
   id="create-entry"
   action=<%= `/admin/create/${email}` %>
-    method="post" >
+    method="post" enctype="multipart/form-data">
   <input
     type="text"
     name="title"
@@ -22,14 +22,10 @@
     placeholder= "Title extract"
   />
   <textarea name="content" id="content">
-Article content</textarea
-  >
-   <input
-    type="text"
-    name="image"
-    id="image"
-    placeholder= "Image"
-  />
+Article content</textarea>
+
+<input type="file" id="image" name="image" placeholder="Article image" > 
+
   <input
     type="text"
     name="category"

@@ -7,6 +7,7 @@ const skip = 10
 const getEntries = async (req, res) => {
     console.log("in admin get all entries")
     const { email, page } = req.params
+    console.log(email, page)
     const method = "GET"
     const urlEnd = `entries/${email}/${limit}/${skip * (page - 1)}`
     try {
@@ -66,6 +67,8 @@ const createEntry = async (req, res) => {
     console.log("in admin get create entry")
     const { email } = req.params
     const body = req.body
+    body.image = req.file.filename
+    console.log(body)
     const method = "POST"
     const urlEnd = `create/${email}`
     let data;
@@ -74,6 +77,7 @@ const createEntry = async (req, res) => {
         if (!data.ok) {
             throw data.errors
         } else {
+            console.log("create cont", email)
             res.redirect(`/admin/entries/${email}/1`)
         }
 
@@ -114,6 +118,8 @@ const updateEntry = async (req, res) => {
     const method = "PUT"
     try {
         const body = req.body;
+        body.image = req.file.filename
+        ///if image not updated?
         data = await consultation(`${process.env.URLBASE}${urlEnd}`, method, body);
         if (!data.ok) {
             throw data.errors
@@ -121,6 +127,7 @@ const updateEntry = async (req, res) => {
             res.redirect(`/admin/entries/${email}/1`)
         }
     } catch (error) {
+        console.log(error)
         res.render("adminViews/updateEntryForm", {
             error,
             email,

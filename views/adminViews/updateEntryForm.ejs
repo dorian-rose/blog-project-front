@@ -23,7 +23,7 @@
 <form
   id="update-entry"
   action=<%= `/admin/update/${entry.title.replaceAll(" ","_")}/${entry.email}` %>
-    method="post" >
+    method="post" enctype="multipart/form-data" >
   <input
     type="text"
     name="title"
@@ -39,10 +39,10 @@
     value= "<%= entry.extract %>"
   />
   <textarea name="content" id="content">
-<%= entry.content %></textarea
-  >
+<%= entry.content %></textarea>
+
    <input
-    type="text"
+    type="file"
     name="image"
     id="image"
     value= "<%= entry.image %>"

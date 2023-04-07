@@ -15,8 +15,9 @@
     <p><%= element.formatdate %></p>
     <h4><%=element.title %></h4>
     <h6><%= element.extract %></h6>
+    <img src=<%=`/uploads/${element.image}`%>   alt=<%= element.title %> />
     <p> <%= element.email %></p>
-    <img src=""alt="">
+    
 
     <a class="entry-buttons" href=<%= `/admin/entry/${element.title.replaceAll(" ", "_")}/${element.email} `%>>View</a> 
     <a class="entry-buttons" href=<%= `/admin/form/update/${element.title.replaceAll(" ", "_")}/${element.email} `%>>Update</a> 

@@ -15,7 +15,7 @@
     <h4><%=element.title %></h4>
     <h6><%= element.extract %></h6>
     <p>Contact author: <%= element.email %></p>
-    <img src=""alt="">
+    <img src=<%=`/uploads/${element.image}`%>   alt=<%= element.title %> >
 
     <a class="entry-buttons" href=<%= `/entry/${element.title.replaceAll(" ", "_")}/${element.email} `%>>Read More</a> 
 

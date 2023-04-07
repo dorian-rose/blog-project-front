@@ -21,7 +21,7 @@ const consultation = async (url, method, body = {}) => {
                 }
             }
         }
-
+        console.log(url, options)
         const response = await fetch(url, options);
         const respData = await response.json();
 
