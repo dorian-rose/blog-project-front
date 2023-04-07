@@ -1,0 +1,28 @@
+<%- include('./userTemplates/headerUser') %> <%- include('./userTemplates/navUser') %> 
+<h1>Articles relating to "<%= search %>"</h1>
+<% if (typeof error !== 'undefined') { %>
+<div class="error-message"></div>
+           <p><%= error %> </p>
+</div>
+        <% }  else { %>
+
+
+<section class="entries-users">
+  
+  <% entries.forEach(element => { %>
+  <article class="entry-card">
+    <p><%= element.formatdate %></p>
+    <h4><%=element.title %></h4>
+    <h6><%= element.extract %></h6>
+    <p>Contact author: <%= element.email %></p>
+    <img src=""alt="">
+
+    <a class="entry-buttons" href=<%= `/entry/${element.title.replaceAll(" ", "_")}/${element.email} `%>>Read More</a> 
+
+  </article>
+  <% }) %>
+</section>
+
+ <% } %>
+
+<%- include("./userTemplates/footerUser") %>

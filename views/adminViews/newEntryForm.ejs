@@ -44,5 +44,17 @@ Article content</textarea
 <a id="back-button" href=<%= `/admin/entries/${email}/1`%>
   >Back to all services</a
 >
+
+<div class="error-message">
+<% if (typeof error !== 'undefined') { %>
+
+            <% error.forEach(element => { %>
+             
+             <p><%= element.msg %></p> 
+
+            <% }) %>
+
+        <% } %>
+</div>
 <%- include("./adminTemplates/footerAdmin") %>
 

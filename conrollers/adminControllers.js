@@ -11,15 +11,21 @@ const getEntries = async (req, res) => {
     const urlEnd = `entries/${email}/${limit}/${skip * (page - 1)}`
     try {
         const data = await consultation(`${process.env.URLBASE}${urlEnd}`, method);
-        const entries = data.entries
-        res.render("adminViews/showEntries", {
-            entries,
-            email
-        });
+
+        if (data.ok) {
+            const entries = data.entries
+            res.render("adminViews/showEntries", {
+                entries,
+                email
+            });
+        } else {
+            throw data.msg
+        }
     } catch (error) {
-        return res.status(500).json({
-            ok: false,
-            msg: "Error retrieving entries",
+        console.log(error)
+        res.render("adminViews/showEntries", {
+            error,
+            email
         });
     }
 }
@@ -33,16 +39,17 @@ const getEntry = async (req, res) => {
     let data;
     try {
         data = await consultation(`${process.env.URLBASE}${urlEnd}`, method);
-        console.log(data)
-        const entry = data.entry[0]
-        res.render("adminViews/showOneEntry", {
-            entry,
-            email
-        });
+        if (data.ok) {
+            const entry = data.entry[0]
+            res.render("adminViews/showOneEntry", {
+                entry,
+                email
+            });
+        } else { throw data.msg }
     } catch (error) {
-        return res.status(500).json({
-            ok: false,
-            msg: "Error retrieving entry",
+        res.render("adminViews/showOneEntry", {
+            error,
+            email
         });
     }
 }
@@ -50,6 +57,7 @@ const getEntry = async (req, res) => {
 //render form to create new entry
 const showNewEntriesForm = (req, res) => {
     const { email } = req.params
+    console.log("render form new ")
     res.render("adminViews/newEntryForm", { email });
 };
 
@@ -63,13 +71,15 @@ const createEntry = async (req, res) => {
     let data;
     try {
         data = await consultation(`${process.env.URLBASE}${urlEnd}`, method, body);
+        if (!data.ok) {
+            throw data.errors
+        } else {
+            res.redirect(`/admin/entries/${email}/1`)
+        }
+
     } catch (error) {
-        return res.status(500).json({
-            ok: false,
-            msg: "Error creating entry",
-        });
+        res.render("adminViews/newEntryForm", { email, error });
     }
-    res.redirect(`/admin/entries/${email}/1`)
 }
 
 const showUpdateEntryForm = async (req, res) => {
@@ -80,16 +90,19 @@ const showUpdateEntryForm = async (req, res) => {
     let data;
     try {
         data = await consultation(`${process.env.URLBASE}${urlEnd}`, method);
-        console.log(data)
-        entry = data.entry[0]
-        res.render("adminViews/updateEntryForm", {
-            entry,
-            email
-        });
+        if (!data.ok) {
+            throw data.msg
+        } else {
+            const entry = data.entry[0]
+            res.render("adminViews/updateEntryForm", {
+                entry,
+                email
+            });
+        }
     } catch (error) {
-        return res.status(500).json({
-            ok: false,
-            msg: "Error retrieving the service",
+        res.render("adminViews/updateEntryForm", {
+            mistake: error,
+            email
         });
     }
 };
@@ -101,16 +114,19 @@ const updateEntry = async (req, res) => {
     const method = "PUT"
     try {
         const body = req.body;
-        console.log("body", req.body)
-        console.log(title, email, body)
         data = await consultation(`${process.env.URLBASE}${urlEnd}`, method, body);
+        if (!data.ok) {
+            throw data.errors
+        } else {
+            res.redirect(`/admin/entries/${email}/1`)
+        }
     } catch (error) {
-        return res.status(500).json({
-            ok: false,
-            msg: "Error updating entry",
+        res.render("adminViews/updateEntryForm", {
+            error,
+            email,
+            title
         });
     }
-    res.redirect(`/admin/entries/${email}/1`)
 };
 
 

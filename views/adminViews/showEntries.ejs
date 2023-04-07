@@ -1,6 +1,13 @@
 <%- include('./adminTemplates/headerAdmin') %> <%- include('./adminTemplates/navAdmin') %> 
 <h1>Your articles</h1>
 
+<% if (typeof error !== 'undefined') { %>
+<div class="error-message"></div>
+           <p><%= error %> </p>
+</div>
+        <% }  else { %>
+         
+
 <section class="entries-admin">
   <a class="entry-buttons" href=<%= `/admin/form/new/${entries[0].email} `%>>Add new article</a> 
   <% entries.forEach(element => { %>
@@ -17,4 +24,6 @@
   </article>
   <% }) %>
 </section>
+
+<% } %>
 <%- include("./adminTemplates/footerAdmin") %>

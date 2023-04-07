@@ -1,15 +1,15 @@
 
 
 const consultation = async (url, method, body = {}) => {
-    console.log("in fetch", body)
+
     let options = {};
-    console.log("url", url)
+
     const data = { ...body }
     if (data.title) {
         const titleSpaced = data.title.replaceAll("_", " ")
         data.title = titleSpaced
     }
-    console.log("in fetch, respaced", data)
+
     try {
         if (method == "POST" || method == "PUT" || method == "DELETE") {
 
@@ -29,6 +29,7 @@ const consultation = async (url, method, body = {}) => {
 
     } catch (error) {
         console.log('FAILED while fetching', error)
+        return error
     }
 }
 

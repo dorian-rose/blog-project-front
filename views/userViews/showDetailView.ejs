@@ -1,0 +1,20 @@
+<%- include('./userTemplates/headerUser') %> <%-
+include('./userTemplates/navUser') %>
+<% if (typeof error !== 'undefined') { %>
+<div class="error-message"></div>
+           <p><%= error %> </p>
+</div>
+        <% }  else { %>
+<section>
+  <article>
+    <h1><%= entry.title %></h1>
+    <p><%= entry.formatdate %></p>
+    <h4><%= entry.category %></h4>
+    <img src="" alt="" />
+    <p><%= entry.content %></p>
+  </article>
+  <a class="entry-buttons" href="/entries/1">Back</a>
+</section>
+<% } %>
+
+<%- include("./userTemplates/footerUser") %>

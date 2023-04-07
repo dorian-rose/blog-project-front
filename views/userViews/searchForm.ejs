@@ -1,0 +1,21 @@
+<%- include('./userTemplates/headerUser') %> <%-
+include('./userTemplates/navUser') %>
+
+<main>
+  <h1>Search article</h1>
+  <section>
+    <form id="search-form" action="/search/1" method="POST">
+      <label for="search">Search</label>
+      <input
+        id="search"
+        name="search"
+        type="search"
+        placeholder="Enter search term here"
+      />
+      <input type="submit" />
+    </form>
+    <a class="entry-buttons" href="/entries/1">Back</a>
+  </section>
+</main>
+
+<%- include("./userTemplates/footerUser") %>

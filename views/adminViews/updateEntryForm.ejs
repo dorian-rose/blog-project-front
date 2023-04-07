@@ -1,5 +1,22 @@
 <% - include('./adminTemplates/headerAdmin') %><%- include('./adminTemplates/navAdmin') %> 
 <h1>Update Entry</h1>
+<% if (typeof mistake !== 'undefined') { %>
+<div class="error-message"></div>
+           <p><%= mistake %> </p>
+</div>
+        <% }  else { %>
+
+          
+<% if (typeof error !== 'undefined') { %>
+<div class="error-message"></div>
+            <% error.forEach(element => { %>
+             
+             <p><%= element.msg %></p> 
+
+            <% }) %>
+<a class="entry-buttons" href=<%= `/admin/form/update/${title.replaceAll(" ", "_")}/${email} `%>>Try again</a> 
+</div>
+        <% }  else { %>
 <article>
 <h2> <%= entry.title %></h2>
 <p> <%= entry.formatdate %></p>
@@ -42,6 +59,8 @@
  <a class="entry-buttons" href=<%= `/admin/delete/${entry.title.replaceAll(" ", "_")}/${entry.email} `%> >Delete</a> 
  
 </article>
+<% } %>
+<% } %>
  
  <% - include("./adminTemplates/footerAdmin") %>
 

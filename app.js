@@ -1,6 +1,8 @@
 const express = require("express")
 const app = express();
-
+//import and use cookies:
+const cookieParser = require('cookie-parser');
+app.use(cookieParser())
 //dotenv to access .env
 require("dotenv").config();
 //* cors model to access env

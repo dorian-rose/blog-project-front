@@ -1,0 +1,24 @@
+<%- include("./userTemplates/headerUser") %><%-
+include("./userTemplates/navUser") %>
+<h1>Login</h1>
+<form id="login-form" action="/reader/verification" method="post">
+  <input type="text" name="email" id="email" placeholder="Enter email" />
+
+  <input
+    type="text"
+    name="password"
+    id="password"
+    placeholder="Enter password"
+  />
+
+  <input type="submit" />
+</form>
+
+<div class="error-message">
+  <% if (typeof error !== 'undefined') { %>
+  <p><%= error %></p>
+  <% } %>
+</div>
+
+<a id="back-button" href="/">Home</a>
+<%- include("./userTemplates/footerUser") %>
