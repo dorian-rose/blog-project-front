@@ -83,6 +83,7 @@ const showLoginPage = (req, res) => {
     res.render("userViews/login-form");
 }
 
+
 const loginUserReader = async (req, res) => {
     const method = "POST"
     const body = req.body
@@ -92,8 +93,6 @@ const loginUserReader = async (req, res) => {
         console.log(data)
         if (data.ok) {
             res.cookie('email', body.email, { http: true, secure: true, sameSite: 'strict', expires: new Date('2023-12-20') })
-            res.clearCookie('user')
-            //res.cookie('token', data.token, { http: true, secure: true, sameSite: 'strict', expires: new Date('2023-12-20') })
             req.header.authorization = data.token
             res.redirect("/entries/1")
         } else {
@@ -105,6 +104,8 @@ const loginUserReader = async (req, res) => {
     }
 };
 
+
+
 const logout = (req, res) => {
     res.clearCookie('email')
     res.redirect("/")
@@ -112,4 +113,4 @@ const logout = (req, res) => {
 
 
 
-module.exports = { getAllEntries, getEntry, showSearchForm, searchEntry, showLoginPage, loginUserReader, showIndex, logout }
+module.exports = { getAllEntries, getEntry, showSearchForm, searchEntry, showLoginPage, loginUserReader, showIndex, logout, }

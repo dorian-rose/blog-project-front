@@ -3,6 +3,35 @@ const { consultation } = require("../helpers/fetch")
 const limit = 10
 const skip = 10
 
+
+//login admin (author)
+
+const showAdminLoginPage = (req, res) => {
+    res.render("userViews/login-form-admin");
+}
+
+const loginUserAuthor = async (req, res) => {
+    const method = "POST"
+    const body = req.body
+    const urlEnd = '/author'
+    let data;
+    try {
+        data = await consultation(process.env.URLBASEUSERS + urlEnd, method, body);
+        console.log(data)
+        if (data.ok) {
+            res.cookie("email", body.email, { http: true, secure: true, sameSite: 'strict', expires: new Date('2023-12-20') })
+            //req.header.authorization = data.token
+            res.redirect(`/admin/entries/${body.email}/1`)
+        } else {
+            throw data.msg
+        }
+
+    } catch (error) {
+        res.render("userViews/login-form-admin", { error })
+    }
+};
+
+
 //get all entries from one author (by author email)
 const getEntries = async (req, res) => {
     const { email, page } = req.params
@@ -154,4 +183,4 @@ const deleteEntry = async (req, res) => {
     res.redirect(`/admin/entries/${email}/1`)
 };
 
-module.exports = { getEntries, getEntry, createEntry, showNewEntriesForm, showUpdateEntryForm, updateEntry, deleteEntry }
+module.exports = { showAdminLoginPage, loginUserAuthor, getEntries, getEntry, createEntry, showNewEntriesForm, showUpdateEntryForm, updateEntry, deleteEntry }

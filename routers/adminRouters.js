@@ -1,15 +1,22 @@
 const express = require("express")
 const router = express.Router()
 const { uploadMiddleware } = require("../middleware/multer")
-const { getEntries, getEntry, createEntry, showNewEntriesForm, showUpdateEntryForm, updateEntry, deleteEntry } = require("../conrollers/adminControllers")
+const { validateAuthor } = require("../middleware/validateUserAuthor")
+const { getEntries, getEntry, createEntry, showNewEntriesForm, showUpdateEntryForm, updateEntry, deleteEntry, showAdminLoginPage, loginUserAuthor, } = require("../conrollers/adminControllers")
 
-router.get("/entries/:email/:page", getEntries)
-router.get("/entry/:title/:email", getEntry)
-router.get("/form/new/:email", showNewEntriesForm);
-router.post("/create/:email", uploadMiddleware.single("image"), createEntry)
-router.get("/form/update/:title/:email", showUpdateEntryForm);
-router.post("/update/:title/:email", uploadMiddleware.single("image"), updateEntry)
-router.get("/delete/:title/:email", deleteEntry)
+
+router.get("/login", showAdminLoginPage)
+router.post("/author/verification", loginUserAuthor)
+//protect url middleware
+//router.use(validateAuthor)
+
+router.get("/entries/:email/:page", validateAuthor, getEntries)
+router.get("/entry/:title/:email", validateAuthor, getEntry)
+router.get("/form/new/:email", validateAuthor, showNewEntriesForm);
+router.post("/create/:email", validateAuthor, uploadMiddleware.single("image"), createEntry)
+router.get("/form/update/:title/:email", validateAuthor, showUpdateEntryForm);
+router.post("/update/:title/:email", validateAuthor, uploadMiddleware.single("image"), updateEntry)
+router.get("/delete/:title/:email", validateAuthor, deleteEntry)
 
 
 module.exports = router

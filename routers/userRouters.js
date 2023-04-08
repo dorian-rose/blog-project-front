@@ -6,13 +6,14 @@ const { getAllEntries, getEntry, showSearchForm, searchEntry, showLoginPage, log
 router.get("/", showIndex)
 router.get("/login", showLoginPage)
 router.post("/reader/verification", loginUserReader)
-//proteger url middleware
-router.use(validateReader)
 
-router.get("/entries/:page", getAllEntries)
-router.get("/entry/:title/:email", getEntry)
-router.get("/form/search", showSearchForm)
-router.post("/search/:page", searchEntry)
+//protect url middleware
+//router.use(validateReader)
+
+router.get("/entries/:page", validateReader, getAllEntries)
+router.get("/entry/:title/:email", validateReader, getEntry)
+router.get("/form/search", validateReader, showSearchForm)
+router.post("/search/:page", validateReader, searchEntry)
 router.get("/logout", logout)
 
 

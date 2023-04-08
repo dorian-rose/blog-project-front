@@ -2,12 +2,13 @@
 const { consultation } = require("../helpers/fetch");
 // const cookieParser = require('cookie-parser');
 
-const validateReader = async (req, res, next) => {
-    console.log("in validatae reader")
+const validateAuthor = async (req, res, next) => {
+
+    console.log("in validatae athor")
     const method = "POST"
     const email = req.cookies.email
     body = { email }
-    const urlEnd = "/verify"
+    const urlEnd = "/author/verify"
     const data = await consultation(process.env.URLBASEUSERS + urlEnd, method, body);
     if (!data.ok) {
         return res.redirect("/")
@@ -16,4 +17,4 @@ const validateReader = async (req, res, next) => {
 }
 
 
-module.exports = { validateReader }
+module.exports = { validateAuthor }
