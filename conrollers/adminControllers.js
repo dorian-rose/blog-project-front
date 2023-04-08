@@ -5,7 +5,6 @@ const skip = 10
 
 //get all entries from one author (by author email)
 const getEntries = async (req, res) => {
-    console.log("in admin get all entries")
     const { email, page } = req.params
     console.log(email, page)
     const method = "GET"

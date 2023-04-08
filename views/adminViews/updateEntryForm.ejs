@@ -1,4 +1,4 @@
-<% - include('./adminTemplates/headerAdmin') %><%- include('./adminTemplates/navAdmin') %> 
+<%- include('./adminTemplates/headerAdmin') %> <%- include('./adminTemplates/navAdmin') %> 
 <h1>Update Entry</h1>
 <% if (typeof mistake !== 'undefined') { %>
 <div class="error-message"></div>
@@ -24,29 +24,33 @@
   id="update-entry"
   action=<%= `/admin/update/${entry.title.replaceAll(" ","_")}/${entry.email}` %>
     method="post" enctype="multipart/form-data" >
-  <input
+  <label for="title">Title</label>
+    <input
     type="text"
     name="title"
     id="title"
    value= "<%= entry.title %>"
   />
   
-  
+  <label for="extract">Extract</label>
   <input
     type="text"
     name="extract"
     id="extract"
     value= "<%= entry.extract %>"
   />
+  <label for="content">Content</label>
   <textarea name="content" id="content">
 <%= entry.content %></textarea>
-
+<label for="image">Image</label>
    <input
     type="file"
     name="image"
     id="image"
     value= "<%= entry.image %>"
   />
+
+  <label for="category">Category</label>
   <input
     type="text"
     name="category"
@@ -56,7 +60,7 @@
   
   <input type="submit" />
 </form >
- <a class="entry-buttons" href=<%= `/admin/delete/${entry.title.replaceAll(" ", "_")}/${entry.email} `%> >Delete</a> 
+ <a class="buttons" href=<%= `/admin/delete/${entry.title.replaceAll(" ", "_")}/${entry.email} `%> >Delete</a> 
  
 </article>
 <% } %>

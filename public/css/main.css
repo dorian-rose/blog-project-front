@@ -1,0 +1,230 @@
+:root {
+  --dark: #212529;
+  --medium: #e8e5e5;
+  --light: #fff;
+  --feature: #420e0e;
+}
+/* ALL PAGES */
+* {
+  margin: 0;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+header {
+  color: var(--light);
+  background-image: url(../resources/dia_de_los_muertos.jpeg);
+  padding: 40px;
+  text-align: center;
+  width: 100%;
+}
+
+.error-message {
+  color: var(--feature);
+  font-style: italic;
+  margin-bottom: 30px;
+}
+
+h1 {
+  font-size: 40px;
+  padding: 15px;
+  color: var(--feature);
+}
+h3 {
+  margin: 15px 0 30px;
+  font-size: 25px 0 35px;
+}
+h4 {
+  margin: 10px;
+  color: var(--feature);
+}
+p {
+  margin: 10px;
+}
+img {
+  width: 100%;
+}
+/* nav */
+nav {
+  width: 100%;
+  margin-bottom: 20px;
+  background-color: var(--dark);
+  padding: 1% 1%;
+}
+
+ul {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  margin: 1%;
+  padding: 0;
+}
+
+li {
+  display: block;
+  margin: 3px 3px;
+  padding: 0 3px;
+  text-decoration: none;
+  list-style-type: none;
+  text-align: start;
+  border: var(--light) solid 1px;
+}
+
+li:hover {
+  background-color: var(--medium);
+}
+
+li a {
+  color: var(--medium);
+  text-decoration: none;
+}
+
+li a:hover {
+  color: var(--dark);
+}
+
+/* end nav */
+
+/* form  */
+input,
+textarea {
+  display: block;
+  background-color: var(--medium);
+  padding: 12px 20px;
+  width: 80%;
+  margin: 10px auto 20px !important;
+  border: 1px solid var(--dark);
+  color: var(--dark);
+}
+
+::placeholder {
+  color: var(--dark);
+}
+
+label {
+  display: block;
+  text-align: left;
+  font-style: italic;
+  margin-left: 10%;
+  color: var(--feature);
+}
+/* end form  */
+footer {
+  background-color: var(--dark);
+  padding: 40px;
+  text-align: center;
+  width: 100%;
+  margin-top: 30px;
+}
+footer a {
+  color: var(--light);
+  margin: 0 20px;
+}
+/* products and services */
+.article-container {
+  display: grid;
+  gap: 20px;
+  padding: 20px 10% 50px;
+  margin: 20px 0;
+}
+/* .servicios-admin {
+  gap: 20px;
+  background-color: var(--medium);
+  padding: 20px 10px;
+  margin: 20px 0;
+}  */
+.article-card,
+.one-article-card {
+  background-color: var(--medium);
+  padding: 20px;
+  width: fit-content;
+  margin: 20px auto;
+}
+.article-card p {
+  margin-bottom: 40px;
+}
+
+.one-article-card {
+  padding: 2% 5%;
+}
+
+.product-card,
+.installations-card,
+.servicios-card {
+  background-color: var(--light);
+}
+.entry-card img {
+  padding: 10px;
+}
+/* login form */
+#login-form input[type="text"] {
+  width: 80%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+}
+
+#login-form input[type="submit"] {
+  background-color: var(--feature);
+  color: white;
+  padding: 14px 20px;
+  margin: 8px auto 30px;
+  border: none;
+  cursor: pointer;
+  width: 80%;
+}
+
+#login-form input[type="submit"]:hover {
+  opacity: 0.8;
+}
+/* end loginform  */
+
+/* link buttons  */
+
+.buttons {
+  background-color: var(--light);
+  border: 1px solid #ccc;
+  padding: 7px 20px;
+  margin: 30px 0;
+  color: var(--feature);
+  text-decoration: none;
+  border-radius: 20px;
+}
+
+#back-button:hover,
+.buttons:hover {
+  background-color: var(--feature);
+  color: var(--light);
+}
+/*==768 px=*/
+@media screen and (min-width: 768px) {
+  ul {
+    flex-direction: row;
+    margin: 2%;
+    padding: 0;
+  }
+  li {
+    text-align: start;
+  }
+
+  .article-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  #login-form input[type="text"] {
+    width: 50%;
+  }
+  #login-form input[type="submit"] {
+    width: 50%;
+  }
+}
+/*==996 px=*/
+@media screen and (min-width: 996px) {
+  .article-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

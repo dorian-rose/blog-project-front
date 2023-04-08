@@ -5,15 +5,15 @@
 </div>
         <% }  else { %>
 <section>
-<article>
+<article class="one-article-card">
   <h1><%= entry.title %></h1>
   <p><%= entry.formatdate %></p>
   <h4><%= entry.category %></h4>
   <img src=<%=`/uploads/${entry.image}`%>   alt=<%= entry.title %> />
   <p><%= entry.content %> </p>
 </article>
- <a class="entry-buttons" href=<%= `/admin/form/update/${entry.title.replaceAll(" ", "_")}/${entry.email} `%>>Update</a> 
-  <a class="entry-buttons" href=<%= `/admin/delete/${entry.title.replaceAll(" ", "_")}/${entry.email} `%> >Delete</a> 
+ <a class="buttons" href=<%= `/admin/form/update/${entry.title.replaceAll(" ", "_")}/${entry.email} `%>>Update</a> 
+  <a class="buttons" href=<%= `/admin/delete/${entry.title.replaceAll(" ", "_")}/${entry.email} `%> >Delete</a> 
 </section>
 <% } %>
 <% - include("./adminTemplates/footerAdmin") %>

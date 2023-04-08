@@ -8,9 +8,7 @@ const validateReader = async (req, res, next) => {
     const email = req.cookies.email
     body = { email }
     const urlEnd = "/verify"
-    console.log("validating user")
     const data = await consultation(process.env.URLBASEUSERS + urlEnd, method, body);
-    console.log("user", data)
     if (!data.ok) {
         return res.redirect("/")
     }

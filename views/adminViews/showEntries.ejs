@@ -9,21 +9,24 @@
          
 
 <section class="entries-admin">
-  <a class="entry-buttons" href=<%= `/admin/form/new/${entries[0].email} `%>>Add new article</a> 
+  <a class="buttons" href=<%= `/admin/form/new/${entries[0].email} `%>>Add new article</a> 
+ <div class="article-container">
   <% entries.forEach(element => { %>
-  <article class="entry-card">
-    <p><%= element.formatdate %></p>
+  
+  <article class="article-card">
     <h4><%=element.title %></h4>
+    <p><%= element.formatdate %></p>
     <h6><%= element.extract %></h6>
     <img src=<%=`/uploads/${element.image}`%>   alt=<%= element.title %> />
-    <p> <%= element.email %></p>
+    
     
 
-    <a class="entry-buttons" href=<%= `/admin/entry/${element.title.replaceAll(" ", "_")}/${element.email} `%>>View</a> 
-    <a class="entry-buttons" href=<%= `/admin/form/update/${element.title.replaceAll(" ", "_")}/${element.email} `%>>Update</a> 
-    <a class="entry-buttons" href=<%= `/admin/delete/${element.title.replaceAll(" ", "_")}/${element.email} `%> >Delete</a> 
+    <a class="buttons" href=<%= `/admin/entry/${element.title.replaceAll(" ", "_")}/${element.email} `%>>View</a> 
+    <a class="buttons" href=<%= `/admin/form/update/${element.title.replaceAll(" ", "_")}/${element.email} `%>>Update</a> 
+    <a class="buttons" href=<%= `/admin/delete/${element.title.replaceAll(" ", "_")}/${element.email} `%> >Delete</a> 
   </article>
   <% }) %>
+  </div>
 </section>
 
 <% } %>
