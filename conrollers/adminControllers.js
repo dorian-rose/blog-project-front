@@ -19,7 +19,6 @@ const loginUserAuthor = async (req, res) => {
     let data;
     try {
         data = await consultation(process.env.URLBASEUSERS + urlEnd, method, body);
-        console.log(data)
         if (data.ok) {
             res.cookie("email", body.email, { http: true, secure: true, sameSite: 'strict', expires: new Date('2023-12-20') })
             //req.header.authorization = data.token
@@ -159,7 +158,6 @@ const updateEntry = async (req, res) => {
             res.redirect(`/admin/entries/${email}/1`)
         }
     } catch (error) {
-        console.log(error)
         res.render("adminViews/updateEntryForm", {
             error,
             email,

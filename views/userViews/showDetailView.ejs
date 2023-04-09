@@ -6,10 +6,10 @@ include('./userTemplates/navUser') %>
 </div>
         <% }  else { %>
 <section>
-  <article class="detail">
+  <article class="one-article-card">
     <h1><%= entry.title %></h1>
     <p><%= entry.formatdate %></p>
-    <h4><%= entry.category %></h4>
+    <h4 class="author-name">Author: <%= entry.fullname %></h4>
     <img src=<%=`/uploads/${entry.image}`%>   alt=<%= entry.title %> />
     <p><%= entry.content %></p>
   </article>

@@ -16,7 +16,7 @@
 
 header {
   color: var(--light);
-  background-image: url(../resources/dia_de_los_muertos.jpeg);
+  background-image: url(../resources/san_cristobal.jpg);
   padding: 40px;
   text-align: center;
   width: 100%;
@@ -121,7 +121,11 @@ footer a {
   color: var(--light);
   margin: 0 20px;
 }
-/* products and services */
+/* articles */
+.author-name {
+  text-transform: capitalize;
+}
+
 .article-container {
   display: grid;
   gap: 20px;
@@ -144,8 +148,8 @@ footer a {
   padding: 2% 5%;
 }
 
-.entry-card img {
-  padding: 10px;
+.article-card img {
+  margin-bottom: 5%;
 }
 /* login form */
 #login-form input[type="text"],
@@ -177,21 +181,20 @@ input[type="submit"]:hover {
 .buttons {
   background-color: var(--light);
   border: 1px solid #ccc;
-  padding: 7px 20px;
+  padding: 2px 20px;
   margin: 30px 0;
   color: var(--feature);
   text-decoration: none;
   border-radius: 20px;
 }
 
-.page-number-div {
-  margin: 20px 0;
-}
-
-#back-button:hover,
 .buttons:hover {
   background-color: var(--feature);
   color: var(--light);
+}
+
+.page-number-div {
+  margin: 20px 0;
 }
 /*==768 px=*/
 @media screen and (min-width: 768px) {
