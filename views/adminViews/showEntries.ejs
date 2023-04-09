@@ -14,7 +14,7 @@
   <% entries.forEach(element => { %>
   
   <article class="article-card">
-    <h4><%=element.title %></h4>
+    <h2><%=element.title %></h2>
     <p><%= element.formatdate %></p>
     <h6><%= element.extract %></h6>
     <img src=<%=`/uploads/${element.image}`%>   alt=<%= element.title %> />
@@ -26,6 +26,12 @@
     <a class="buttons" href=<%= `/admin/delete/${element.title.replaceAll(" ", "_")}/${element.email} `%> >Delete</a> 
   </article>
   <% }) %>
+  </div>
+  <div class="page-number-div">
+<% for( let index = 1; index <= pages; index++ ) { %>
+<a class="buttons" href=<%= `/admin/entries/${entries[0].email}/${index}`%>> <%- index %></a>
+<% } %>
+
   </div>
 </section>
 

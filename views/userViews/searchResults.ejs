@@ -11,16 +11,22 @@
   
   <% entries.forEach(element => { %>
   <article class="entry-card">
+    <h2><%=element.title %></h2>
     <p><%= element.formatdate %></p>
-    <h4><%=element.title %></h4>
-    <h6><%= element.extract %></h6>
+    <p><%= element.extract %></p>
     <p>Contact author: <%= element.email %></p>
     <img src=<%=`/uploads/${element.image}`%>   alt=<%= element.title %> />
 
-    <a class="entry-buttons" href=<%= `/entry/${element.title.replaceAll(" ", "_")}/${element.email} `%>>Read More</a> 
+    <a class="buttons" href=<%= `/entry/${element.title.replaceAll(" ", "_")}/${element.email} `%>>Read More</a> 
 
   </article>
   <% }) %>
+  <div class="page-number-div">
+<% for( let index = 1; index <= pages; index++ ) { %>
+<a class="buttons" href=<%=`/search/${index}`%> > <%- index %></a>
+<% } %>
+
+  </div>
 </section>
 
  <% } %>

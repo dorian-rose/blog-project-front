@@ -1,7 +1,9 @@
 const { consultation } = require("../helpers/fetch")
+const { getPages } = require("../helpers/pages")
 
-const limit = 10
-const skip = 10
+
+const limit = 3
+const skip = 3
 
 
 //login admin (author)
@@ -42,10 +44,13 @@ const getEntries = async (req, res) => {
         const data = await consultation(`${process.env.URLBASE}${urlEnd}`, method);
 
         if (data.ok) {
+            const entryCount = await getPages(email)
+            const pages = Math.ceil(entryCount / limit)
             const entries = data.entries
             res.render("adminViews/showEntries", {
                 entries,
-                email
+                email,
+                pages
             });
         } else {
             throw data.msg
@@ -86,7 +91,6 @@ const getEntry = async (req, res) => {
 //render form to create new entry
 const showNewEntriesForm = (req, res) => {
     const { email } = req.params
-    console.log("render form new ")
     res.render("adminViews/newEntryForm", { email });
 };
 

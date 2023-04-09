@@ -1,6 +1,7 @@
 const { consultation } = require("../helpers/fetch")
-const limit = 10
-const skip = 10
+const { getPages } = require("../helpers/pages")
+const limit = 3
+const skip = 3
 
 //Login 
 const showIndex = (req, res) => {
@@ -15,8 +16,11 @@ const getAllEntries = async (req, res) => {
         const data = await consultation(`${process.env.URLBASE}${urlEnd}`, method);
         if (data.ok) {
             const entries = data.entries
+            const entryCount = await getPages()
+            const pages = Math.ceil(entryCount / limit)
             res.render("userViews/showAllEntries", {
-                entries
+                entries,
+                pages
             });
         } else {
             throw data.msg
@@ -48,8 +52,7 @@ const getEntry = async (req, res) => {
             error
         });
     }
-}
-
+}//search all entries that have a match in title or body with search word retrieved from form
 const showSearchForm = (req, res) => {
     res.render("userViews/searchForm");
 }
@@ -63,10 +66,13 @@ const searchEntry = async (req, res) => {
     try {
         data = await consultation(`${process.env.URLBASE}${urlEnd}`, method);
         if (data.ok) {
+            const entryCount = await getPages(null, search)
+            const pages = Math.ceil(entryCount / limit)
             const entries = data.entries
             res.render("userViews/searchResults", {
                 entries,
-                search
+                search,
+                pages
             });
         } else {
             throw data.msg

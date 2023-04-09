@@ -33,12 +33,10 @@ h1 {
   padding: 15px;
   color: var(--feature);
 }
-h3 {
-  margin: 15px 0 30px;
-  font-size: 25px 0 35px;
-}
-h4 {
-  margin: 10px;
+
+h4,
+h2 {
+  margin: 40px 10px 10px;
   color: var(--feature);
 }
 p {
@@ -130,12 +128,7 @@ footer a {
   padding: 20px 10% 50px;
   margin: 20px 0;
 }
-/* .servicios-admin {
-  gap: 20px;
-  background-color: var(--medium);
-  padding: 20px 10px;
-  margin: 20px 0;
-}  */
+
 .article-card,
 .one-article-card {
   background-color: var(--medium);
@@ -151,16 +144,12 @@ footer a {
   padding: 2% 5%;
 }
 
-.product-card,
-.installations-card,
-.servicios-card {
-  background-color: var(--light);
-}
 .entry-card img {
   padding: 10px;
 }
 /* login form */
-#login-form input[type="text"] {
+#login-form input[type="text"],
+#login-form input[type="password"] {
   width: 80%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -168,7 +157,7 @@ footer a {
   border: 1px solid #ccc;
 }
 
-#login-form input[type="submit"] {
+input[type="submit"] {
   background-color: var(--feature);
   color: white;
   padding: 14px 20px;
@@ -178,7 +167,7 @@ footer a {
   width: 80%;
 }
 
-#login-form input[type="submit"]:hover {
+input[type="submit"]:hover {
   opacity: 0.8;
 }
 /* end loginform  */
@@ -193,6 +182,10 @@ footer a {
   color: var(--feature);
   text-decoration: none;
   border-radius: 20px;
+}
+
+.page-number-div {
+  margin: 20px 0;
 }
 
 #back-button:hover,
@@ -210,12 +203,16 @@ footer a {
   li {
     text-align: start;
   }
+  article {
+    max-width: 80%;
+  }
 
   .article-container {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  #login-form input[type="text"] {
+  #login-form input[type="text"],
+  #login-form input[type="password"] {
     width: 50%;
   }
   #login-form input[type="submit"] {

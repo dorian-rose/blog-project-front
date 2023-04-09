@@ -6,14 +6,14 @@ include('./userTemplates/navUser') %>
 </div>
         <% }  else { %>
 <section>
-  <article>
+  <article class="detail">
     <h1><%= entry.title %></h1>
     <p><%= entry.formatdate %></p>
     <h4><%= entry.category %></h4>
     <img src=<%=`/uploads/${entry.image}`%>   alt=<%= entry.title %> />
     <p><%= entry.content %></p>
   </article>
-  <a class="entry-buttons" href="/entries/1">Back</a>
+  <a class="buttons" href="/entries/1">Back</a>
 </section>
 <% } %>
 

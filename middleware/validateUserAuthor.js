@@ -2,9 +2,9 @@
 const { consultation } = require("../helpers/fetch");
 // const cookieParser = require('cookie-parser');
 
+//check that the user logged in is in db with permissions, then access function via 'next'
 const validateAuthor = async (req, res, next) => {
 
-    console.log("in validatae athor")
     const method = "POST"
     const email = req.cookies.email
     body = { email }
