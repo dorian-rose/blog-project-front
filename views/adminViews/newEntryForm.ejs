@@ -6,7 +6,9 @@
 <form
   id="create-entry"
   action=<%= `/admin/create/${email}` %>
-    method="post" enctype="multipart/form-data">
+  method="post" enctype="multipart/form-data"
+  autocomplete="on"
+    >
   <input
     type="text"
     name="title"
@@ -33,7 +35,7 @@ Article content</textarea>
     placeholder= "Article category"
   />
   
-  <input type="submit" />
+  <input class="submit" type="submit" />
 </form >
  
 </article>

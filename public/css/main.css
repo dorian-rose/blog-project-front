@@ -12,6 +12,8 @@
   max-width: 1200px;
   margin: 0 auto;
   box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
 }
 
 header {
@@ -20,6 +22,7 @@ header {
   padding: 40px;
   text-align: center;
   width: 100%;
+  font-size: 20px;
 }
 
 .error-message {
@@ -47,47 +50,111 @@ img {
 }
 /* nav */
 nav {
+  height: 50px;
   width: 100%;
-  margin-bottom: 20px;
-  background-color: var(--dark);
-  padding: 1% 1%;
-}
-
-ul {
-  width: fit-content;
+  background-color: var(--feature);
   display: flex;
-  flex-direction: column;
-  margin: 1%;
-  padding: 0;
+  justify-content: space-between;
+}
+.hamburger-btn {
+  position: relative;
+  left: 75%;
+  font-size: 30px;
+  color: var(--light);
+  line-height: 50px;
+  cursor: pointer;
 }
 
-li {
-  display: block;
-  margin: 3px 3px;
-  padding: 0 3px;
+.nav-list {
+  padding: 0 20px;
+  position: relative;
+  top: 20px;
+  margin: 15px 0;
+  display: inline;
+  width: fit-content;
+  height: 0;
+  background: var(--feature);
+  opacity: 0.75;
+  text-align: center;
+  transition: all 0.5s;
+}
+
+.nav-list li {
+  opacity: 0;
+  line-height: 30px;
+  margin: 30px 0;
+  transition: all 0.5s;
+}
+
+.nav-list li a {
+  color: var(--light);
+  font-size: 20px;
   text-decoration: none;
-  list-style-type: none;
-  text-align: start;
-  border: var(--light) solid 1px;
 }
 
-li:hover {
-  background-color: var(--medium);
+.nav-list li a.active,
+.nav-list li a:hover {
+  color: #ccc;
+  transition: 0.5s;
 }
 
-li a {
-  color: var(--medium);
-  text-decoration: none;
+#check {
+  display: none;
 }
 
-li a:hover {
-  color: var(--dark);
+#check:checked ~ .nav-list {
+  height: fit-content;
 }
 
+#check:checked ~ .nav-list li {
+  opacity: 1;
+}
 /* end nav */
 
+/* table */
+table {
+  display: block;
+  margin-top: 20px;
+  border-collapse: collapse;
+  max-width: 80%;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+td,
+th {
+  border: 1px solid var(--dark);
+  text-align: left;
+  padding: 10px;
+}
+
+tr:nth-child(even) {
+  background-color: var(--medium);
+}
+table img {
+  max-width: 15vw;
+}
+.title-td {
+  font-weight: bold;
+  color: var(--feature);
+}
+
+.table-buttons {
+  color: var(--feature);
+}
+
 /* form  */
-input,
+input#picture,
+#hide {
+  display: none;
+}
+#hidden-search-form {
+  display: inline;
+}
+
+input[type="text"],
+input[type="file"],
+input[type="search"],
 textarea {
   display: block;
   background-color: var(--medium);
@@ -98,8 +165,8 @@ textarea {
   color: var(--dark);
 }
 
-::placeholder {
-  color: var(--dark);
+#create-entry textarea {
+  color: grey;
 }
 
 label {
@@ -161,7 +228,7 @@ footer a {
   border: 1px solid #ccc;
 }
 
-input[type="submit"] {
+input.submit {
   background-color: var(--feature);
   color: white;
   padding: 14px 20px;
@@ -171,7 +238,7 @@ input[type="submit"] {
   width: 80%;
 }
 
-input[type="submit"]:hover {
+input.submit:hover {
   opacity: 0.8;
 }
 /* end loginform  */
@@ -182,7 +249,7 @@ input[type="submit"]:hover {
   background-color: var(--light);
   border: 1px solid #ccc;
   padding: 2px 20px;
-  margin: 30px 0;
+  margin: 50px 0 30px;
   color: var(--feature);
   text-decoration: none;
   border-radius: 20px;
@@ -196,16 +263,53 @@ input[type="submit"]:hover {
 .page-number-div {
   margin: 20px 0;
 }
+
+/* index buttons */
+.index-buttons {
+  color: var(--feature);
+  text-decoration: none;
+  display: block;
+  padding: 20px;
+  margin-bottom: 20px;
+  max-width: 50%;
+  box-shadow: 10px 10px 31px -14px rgba(0, 0, 0, 0.75);
+  transition: padding 50ms;
+  box-sizing: content-box;
+}
+
+.index-buttons:hover {
+  padding: 21px;
+}
 /*==768 px=*/
 @media screen and (min-width: 768px) {
-  ul {
-    flex-direction: row;
-    margin: 2%;
+  /* nav */
+  nav {
+    height: 80px;
+    background-color: var(--dark);
+    transition: none;
+  }
+
+  .hamburger-btn {
+    display: none;
+  }
+
+  .nav-list {
+    position: static;
+    margin: 0;
     padding: 0;
+    background-color: var(--dark);
+    transition: none;
   }
-  li {
-    text-align: start;
+
+  .nav-list li {
+    margin: 20px;
+    display: inline-block;
+    opacity: 1;
+    transition: none;
   }
+
+  /* end nav */
+
   article {
     max-width: 80%;
   }

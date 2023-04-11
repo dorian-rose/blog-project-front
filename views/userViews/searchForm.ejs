@@ -4,7 +4,7 @@ include('./userTemplates/navUser') %>
 <main>
   <h1>Search article</h1>
   <section>
-    <form id="search-form" action="/search/1" method="POST">
+    <form id="search-form" action="/search/1" method="POST" autocomplete="on">
       <label for="search">Search</label>
       <input
         id="search"
@@ -12,8 +12,17 @@ include('./userTemplates/navUser') %>
         type="search"
         placeholder="Enter search term here"
       />
-      <input type="submit" />
+      <input class="submit" type="submit" />
     </form>
+
+    <div class="error-message">
+      <% if (typeof error !== 'undefined') { %>
+
+      <p><%= error %></p>
+
+      <% } %>
+    </div>
+
     <a class="buttons" href="/entries/1">Back</a>
   </section>
 </main>

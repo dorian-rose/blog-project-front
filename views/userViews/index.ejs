@@ -1,8 +1,18 @@
-<%- include("./userTemplates/headerUser") %>
+<%- include("./userTemplates/headerUser") %> <%-
+include('./userTemplates/navUser') %>
 
-<h1>Login</h1>
+<h1>News!</h1>
 
-<a class="buttons" href="/login">Login</a>
+<a class="index-buttons" href="/">View latest stories </a>
+<a class="index-buttons" href="/entries/1">View all articles </a>
 <a class="buttons" href="/admin/login">Login as author</a>
+
+<div class="error-message">
+  <% if (typeof error !== 'undefined') { %>
+
+  <p><%= error %></p>
+
+  <% } %>
+</div>
 
 <%- include("./userTemplates/footerUser") %>

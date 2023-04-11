@@ -9,6 +9,8 @@
 
 <section class="entries-users">
   
+  <div class="article-container">
+
   <% entries.forEach(element => { %>
   <article class="entry-card">
     <h2><%=element.title %></h2>
@@ -21,9 +23,24 @@
 
   </article>
   <% }) %>
+
+  </div>
+
+
   <div class="page-number-div">
 <% for( let index = 1; index <= pages; index++ ) { %>
-<a class="buttons" href=<%=`/search/${index}`%> > <%- index %></a>
+
+  <form id="hidden-search-form" action=<%=`/search/${index}`%> method="POST">
+      
+      <input
+        id="hide"
+        name="search"
+        type="search"
+        value=<%=search%>
+      />
+      <input class="buttons" type="submit" value=<%- index %> />
+    </form>
+
 <% } %>
 
   </div>

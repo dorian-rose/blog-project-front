@@ -1,7 +1,7 @@
 <%- include('./userTemplates/headerUser') %> <%- include('./userTemplates/navUser') %> 
 <h1>Articles</h1>
 <% if (typeof error !== 'undefined') { %>
-<div class="error-message"></div>
+<div class="error-message">
            <p><%= error %> </p>
 </div>
         <% }  else { %>
@@ -26,8 +26,8 @@
 <% for( let index = 1; index <= pages; index++ ) { %>
 <a class="buttons" href=<%=`/entries/${index}`%> > <%- index %></a>
 <% } %>
-
-  </div>
+ </div>
+ 
 </section>
 
 <% } %>

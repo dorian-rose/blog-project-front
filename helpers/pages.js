@@ -1,6 +1,14 @@
 const { consultation } = require("../helpers/fetch")
 
 //function to check total number of entries/entries for author/search results and return this number
+/**
+ *  
+ * @param {String} email author email
+ * @param {String} search search term or word
+ * @returns {String}
+ * @catch {error}
+ */
+
 const getPages = async (email, search) => {
 
     const method = "POST"
@@ -22,6 +30,7 @@ const getPages = async (email, search) => {
         }
     } catch (error) {
         console.log(error)
+        return error
     }
 }
 

@@ -23,7 +23,7 @@
 <form
   id="update-entry"
   action=<%= `/admin/update/${entry.title.replaceAll(" ","_")}/${entry.email}` %>
-    method="post" enctype="multipart/form-data" >
+  method="post" enctype="multipart/form-data" autocomplete="on">
   <label for="title">Title</label>
     <input
     type="text"
@@ -49,6 +49,12 @@
     id="image"
     value= "<%= entry.image %>"
   />
+  <input
+    type="text"
+    name="picture"
+    id="picture"
+    value= "<%= entry.image %>"
+  />
 
   <label for="category">Category</label>
   <input
@@ -58,7 +64,7 @@
     value= "<%= entry.category %>"
   />
   
-  <input type="submit" />
+  <input class="submit" type="submit" />
 </form >
  <a class="buttons" href=<%= `/admin/delete/${entry.title.replaceAll(" ", "_")}/${entry.email} `%> >Delete</a> 
  

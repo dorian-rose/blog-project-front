@@ -6,27 +6,32 @@
            <p><%= error %> </p>
 </div>
         <% }  else { %>
-         
+          
+<section>
+   <a class="buttons" href=<%= `/admin/form/new/${entries[0].email} `%>>Add new article</a> 
 
-<section class="entries-admin">
-  <a class="buttons" href=<%= `/admin/form/new/${entries[0].email} `%>>Add new article</a> 
- <div class="article-container">
-  <% entries.forEach(element => { %>
-  
-  <article class="article-card">
-    <h2><%=element.title %></h2>
-    <p><%= element.formatdate %></p>
-    <h6><%= element.extract %></h6>
-    <img src=<%=`/uploads/${element.image}`%>   alt=<%= element.title %> />
-    
-    
 
-    <a class="buttons" href=<%= `/admin/entry/${element.title.replaceAll(" ", "_")}/${element.email} `%>>View</a> 
-    <a class="buttons" href=<%= `/admin/form/update/${element.title.replaceAll(" ", "_")}/${element.email} `%>>Update</a> 
-    <a class="buttons" href=<%= `/admin/delete/${element.title.replaceAll(" ", "_")}/${element.email} `%> >Delete</a> 
-  </article>
-  <% }) %>
-  </div>
+<table>  
+<tr>
+  <th></th>
+  <th>Date published</th>
+  <th>Image</th>
+  <th>Title</th>
+  <th>Summary</th>
+  </tr>
+<% entries.forEach(element => { %>
+ <tr>
+  <td>  <a class="table-buttons" href=<%= `/admin/entry/${element.title.replaceAll(" ", "_")}/${element.email} `%>><i class="fa-solid fa-magnifying-glass"></i></a> 
+    <a class="table-buttons" href=<%= `/admin/form/update/${element.title.replaceAll(" ", "_")}/${element.email} `%>><i class="fa-solid fa-pencil"></i></a> 
+    <a class="table-buttons" href=<%= `/admin/delete/${element.title.replaceAll(" ", "_")}/${element.email} `%> ><i class="fa-solid fa-trash"></i></a> </td>
+  <td><%= element.formatdate %></td>
+  <td><div><img src=<%=`/uploads/${element.image}`%>   alt=<%= element.title %> /></div></td>
+  <td class="title-td"><%=element.title %></td>
+  <td colspan="2"><%= element.extract %></td>
+ </tr>
+<% }) %>
+ </table> 
+
   <div class="page-number-div">
 <% for( let index = 1; index <= pages; index++ ) { %>
 <a class="buttons" href=<%= `/admin/entries/${entries[0].email}/${index}`%>> <%- index %></a>

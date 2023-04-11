@@ -1,4 +1,32 @@
-const { consultation } = require("../helpers/fetch")
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: adminControllers.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: adminControllers.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const { consultation } = require("../helpers/fetch")
 const { getPages } = require("../helpers/pages")
 
 
@@ -7,7 +35,12 @@ const skip = 3
 
 
 //login admin (author)
-
+/**
+ *                      
+ * @param {Object} req 
+ * @param {Object} res 
+ * 
+ */
 const showAdminLoginPage = (req, res) => {
     res.render("userViews/login-form-admin");
 }
@@ -21,6 +54,7 @@ const loginUserAuthor = async (req, res) => {
         data = await consultation(process.env.URLBASEUSERS + urlEnd, method, body);
         if (data.ok) {
             res.cookie("email", body.email, { http: true, secure: true, sameSite: 'strict', expires: new Date('2023-12-20') })
+            res.cookie("token", data.token, { http: true, secure: true, sameSite: 'strict', expires: new Date('2023-12-20') })
             //req.header.authorization = data.token
             res.redirect(`/admin/entries/${body.email}/1`)
         } else {
@@ -34,6 +68,11 @@ const loginUserAuthor = async (req, res) => {
 
 
 //get all entries from one author (by author email)
+/**
+ * 
+ * @param {Object} req 
+ * @param {Object} res 
+ */
 const getEntries = async (req, res) => {
     const { email, page } = req.params
     console.log(email, page)
@@ -64,8 +103,13 @@ const getEntries = async (req, res) => {
 }
 
 //search and show one entry with more detail (article content)
+/**
+ * 
+ * @param {Object} req 
+ * @param {Object} res 
+ */
 const getEntry = async (req, res) => {
-    console.log("in admin get one entry")
+
     const { title, email } = req.params
     const method = "GET"
     const urlEnd = `entry/${title.replaceAll("_", " ")}/${email}`
@@ -88,18 +132,28 @@ const getEntry = async (req, res) => {
 }
 
 //render form to create new entry
+/**
+ * 
+ * @param {Object} req 
+ * @param {Object} res 
+ */
 const showNewEntriesForm = (req, res) => {
     const { email } = req.params
     res.render("adminViews/newEntryForm", { email });
 };
 
 //create new entry
+/**
+ * 
+ * @param {Object} req 
+ * @param {Object} res 
+ */
 const createEntry = async (req, res) => {
-    console.log("in admin get create entry")
+
     const { email } = req.params
     const body = req.body
     body.image = req.file.filename
-    console.log(body)
+
     const method = "POST"
     const urlEnd = `create/${email}`
     let data;
@@ -117,8 +171,13 @@ const createEntry = async (req, res) => {
     }
 }
 
+/**
+ * 
+ * @param {Object} req 
+ * @param {Object} res 
+ */
 const showUpdateEntryForm = async (req, res) => {
-    console.log("in admin show update form")
+
     const { title, email } = req.params
     const method = "GET"
     const urlEnd = `entry/${title.replaceAll("_", " ")}/${email}`
@@ -142,6 +201,11 @@ const showUpdateEntryForm = async (req, res) => {
     }
 };
 
+/**
+ * 
+ * @param {Object} req 
+ * @param {Object} res 
+ */
 const updateEntry = async (req, res) => {
     console.log("in admin update entries")
     const { title, email } = req.params;
@@ -149,8 +213,13 @@ const updateEntry = async (req, res) => {
     const method = "PUT"
     try {
         const body = req.body;
-        body.image = req.file.filename
-        ///if image not updated?
+        console.log(body)
+        if (typeof filename !== 'undefined') {
+            body.image = req.file.filename
+        } else {
+            body.image = body.picture
+        }
+
         data = await consultation(`${process.env.URLBASE}${urlEnd}`, method, body);
         if (!data.ok) {
             throw data.errors
@@ -158,6 +227,7 @@ const updateEntry = async (req, res) => {
             res.redirect(`/admin/entries/${email}/1`)
         }
     } catch (error) {
+        console.log(error)
         res.render("adminViews/updateEntryForm", {
             error,
             email,
@@ -166,9 +236,13 @@ const updateEntry = async (req, res) => {
     }
 };
 
-
+/**
+ * 
+ * @param {Object} req 
+ * @param {Object} res 
+ */
 const deleteEntry = async (req, res) => {
-    console.log("in admin delete entries")
+
     const { title, email } = req.params;
     const urlEnd = "delete"
     const method = "DELETE"
@@ -176,13 +250,39 @@ const deleteEntry = async (req, res) => {
         const body = { title, "author": email };
         console.log(title, email, body)
         data = await consultation(`${process.env.URLBASE}${urlEnd}`, method, body);
+        if (!data.ok) { throw data.msg }
     } catch (error) {
-        return res.status(500).json({
-            ok: false,
-            msg: "Error deleting entry",
-        });
+        console.log(error)
     }
     res.redirect(`/admin/entries/${email}/1`)
 };
 
-module.exports = { showAdminLoginPage, loginUserAuthor, getEntries, getEntry, createEntry, showNewEntriesForm, showUpdateEntryForm, updateEntry, deleteEntry }
+const logout = (req, res) => {
+    res.clearCookie('email')
+    res.redirect("/")
+}
+
+
+module.exports = { showAdminLoginPage, loginUserAuthor, getEntries, getEntry, createEntry, showNewEntriesForm, showUpdateEntryForm, updateEntry, deleteEntry, logout }</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#createEntry">createEntry</a></li><li><a href="global.html#deleteEntry">deleteEntry</a></li><li><a href="global.html#getEntries">getEntries</a></li><li><a href="global.html#getEntry">getEntry</a></li><li><a href="global.html#showAdminLoginPage">showAdminLoginPage</a></li><li><a href="global.html#showNewEntriesForm">showNewEntriesForm</a></li><li><a href="global.html#showUpdateEntryForm">showUpdateEntryForm</a></li><li><a href="global.html#updateEntry">updateEntry</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue Apr 11 2023 12:29:03 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
