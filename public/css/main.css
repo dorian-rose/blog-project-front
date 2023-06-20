@@ -54,6 +54,14 @@ p {
 img {
   width: 100%;
 }
+
+.top-border {
+  margin: 60px 20px 10px 20px;
+  padding: 20px 30px 20px 50px;
+  border-top: var(--feature) solid 1px;
+}
+
+
 /* nav */
 nav {
   height: 50px;
@@ -186,6 +194,7 @@ label {
 }
 /* end form  */
 footer {
+ 
   background-color: var(--dark);
   padding: 40px;
   text-align: center;
@@ -298,71 +307,140 @@ input.submit:hover {
 .index-buttons:hover {
   padding: 21px;
 }
+/* homepage */
+.welcome-p {
+  padding: 20px 0 30px 0;
+  margin: 0 20px 0 20px ;
+  border-bottom: var(--feature) solid 1px;
+}
+
 
 /* homepage slider  */
-.slider {
+#parent-container {
+  
+}
+
+.carousel-container {
+
+  height: 400px;
   position: relative;
-  width: 60%;
-  overflow: hidden;
+
+
+}
+
+.navigation-buttons .previous {
+  position: absolute;
+  z-index: 10;
+  font-size: 25px;
+  top: 60%;
+  left: 10px;
+  font-weight: 700;
+}
+
+.navigation-buttons .next {
+  right: 10px;
+  position: absolute;
+  font-size: 25px;
+  z-index: 10;
+  top: 60%;
+}
+
+.navigation-buttons .nav-btn {
+  background: rgba(255, 255, 255, 0.55);
+  cursor: pointer;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+.navigation .nav-btn:hover {
+  background: white;
+}
+
+/* carousel  */
+
+.slider-carousel {
  
+  margin: 20px 60px;
+  transition: all 0.3s ease;
+
+}
+.slider-carousel img {
+  width: 100%;
+  transition: all 0.3s ease;
+  border:8px solid var(--medium);
+
 }
 
 .images {
+  background-color: var(--medium);
+  position: absolute;
+  display: none;
+  margin: 0 auto;
+}
+
+.main {
+  display: block;
+  position: static;
+}
+
+.image-text {
+  margin: 10px 10px 0 0;
   display: flex;
-  width: 100%;
-  
-  
+  flex-direction: column;
 }
 
-.images img {
-    height:auto;
-    width: 100%;
-    transition: all 0.25s ease;
-    margin: 0;
-    z-index: 0;
+.image-text h3 {
+margin-top: 10px;
+  font-size: 30px;
+  color: var(--feature);
 }
 
-.images input {
-   display: none;
-}
-
-.dots {
+.image-text h4 {
+  margin-top: 0;
  
-    display: flex;
-    justify-content: center;
-    margin: 5px;
-    
-}
-.dots label {
-    height: 15px;
-    width: 15px;
-    border-radius: 50%;
-    border: solid var(--feature) 1px;
-    cursor: pointer;
-    transition: all 0.15s ease;
-    margin: 5px;
 }
 
-.dot-checked {background:var(--feature)}
-
-.dots label:hover {background:var(--feature)}
-
-#img1:checked ~ .m1 {
-    margin-left: 0;
+.image-text a {
+  color: var(--feature);
+  text-decoration: none;
+ 
+}
+.image-text a:hover {
+  
+  text-decoration: underline;
+ 
 }
 
 
-#img2:checked ~ .m2 {
-    margin-left: -100%;
-}
-#img3:checked ~ .m3 {
-    margin-left: -200%;
-}
-#img4:checked ~ .m4 {
-    margin-left: -300%;
+.overflow-hidden {
+  max-height: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Adjust the number of lines to show */
+  -webkit-box-orient: vertical;
 }
 
-.grid {display: grid}
+.grid {display: grid;}
+
+.grid-1-2 {grid-template-columns: 1fr}
+
+
+/*=================================================*/
+/*==548 px=*/
+@media screen and (min-width: 548px) { 
+  
+  .grid-1-2 {grid-template-columns: 1fr 1fr}
+
+
+}
+
 
 /*=================================================*/
 /*==768 px=*/
@@ -414,9 +492,9 @@ input.submit:hover {
   #login-form input[type="submit"] {
     width: 50%;
   }
+  
 }
 
-.grid-1-2 {grid-template-columns: 1fr 1fr}
 /*==996 px=*/
 @media screen and (min-width: 996px) {
   .article-container {

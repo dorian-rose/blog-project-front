@@ -2,59 +2,103 @@
 include('./userTemplates/navUser') %>
 
 <h1>News!</h1>
+<p class="welcome-p">Welcome to our vibrant and diverse blog, where knowledge meets inspiration! Whether you're seeking the latest news updates, embarking on thrilling travel adventures, delving into the intricate world of finance, or indulging in the excitement of sports, you've come to the right place. Our platform is designed to inform, engage, and entertain readers with a rich tapestry of articles covering a wide range of topics.</p>
 
 <h2 class="home-h2" >View latest stories </h2>
 
 
+<section id="parent-container">
+<!-- button  div -->
+  <div class="navigation-buttons">
+  <div class="previous nav-btn"><</div>
+  <div class="next nav-btn">></div>
+</div>
+<!-- This div will contain all images and buttons we will be using for Slider
+-->
+<div class="slider-carousel">
 
-<div class="slider">
-<div class="images">
-<% entries.forEach((entries, i) => { %>
- <% if (i == 0) { %>
-<input checked type="radio" name="slide" id="<%=`img${i+1}`%>"  onchange="updateActiveClass(<%- i+1 %>)">
-<%} else { %>
-<input type="radio" name="slide" id="<%=`img${i+1}`%>" onchange="updateActiveClass(<%- i+1 %>)" >
-<% } %>
- 
-<% }) %>
-<div class="grid grid-1-2">
-  <% entries.forEach((entry, i) => { %> <img class="<%=`m${i+1}`%>"  src=<%=`/uploads/${entry.image}`%>
-  alt="<%=`img${i+1}`%>" /> <% }) %>
-
-</div></div>
-<div class="dots">
 <% entries.forEach((entry, i) => { %>
+  <article
+  <% if (i ==0) { %>
+class="images main"
+<%} else { %>
+class="images"
+<% } %>
   
- <label <% if (i==0) { %>
-  class="dot-checked"
- <% } %> for="<%=`img${i+1}`%>" ></label>
+  >
+  <div class="grid grid-1-2">
+        <img src=<%=`/uploads/${entry.image}`%> alt=<%= entry.title %> />
+        <div class="image-text">
+           <h3><%= entry.title %></h3>
+          <h4><%= entry.extract %></h4>
+          <p class="overflow-hidden"><%= entry.content %></p>
+          <a href=<%= `/entry/${entry.title.replaceAll(" ", "_")}/${entry.email} `%> >Read more</a>
+        </div>
+
+</div>
+
+</article>
 <% }) %>
-</div>
-</div>
 
-<a class="index-buttons" href="/entries/1">View all articles </a>
-<a class="buttons" href="/admin/login">Login as author</a>
 
-<div class="error-message">
-  <% if (typeof error !== 'undefined') { %>
+    </div>
+    <!-- end slider div -->
 
-  <p><%= error %></p>
-
-  <% } %>
-</div>
-
-<%- include("./userTemplates/footerUser") %>
+  </section>
+  <section class="top-border"><a class="buttons" href="/admin/login">Login as author</a></section>
+ 
+<%- include("./userTemplates/footerUser") %> 
 
 <script>
-  const updateActiveClass=(index) =>{
-    const labels = document.querySelectorAll('.dots label');
- 
-    labels.forEach((label, i) => {
-      if (i === index - 1) {
-        label.classList.add('dot-checked');
-      } else {
-        label.classList.remove('dot-checked');
-      }
-    });
-  }
+  const previous = document.querySelector('.previous');
+    const next = document.querySelector('.next');
+    const images = document.querySelector('.slider-carousel').children;
+    const totalImages = images.length;
+    let currentIndex = 0;
+
+
+	// Event Listeners to previous and next buttons
+    previous.addEventListener('click', () => {
+      previousImage()
+    })
+
+    next.addEventListener('click', () => {
+      nextImage();
+    })
+    
+    
+ // setInterval(()=>{
+    // 	nextImage();
+    // },2000);
+    
+
+    // Function to go to next Image
+    function nextImage(){
+
+      images[currentIndex].classList.remove('main');
+    	if(currentIndex == totalImages-1){
+        	currentIndex = 0;
+        }
+        else{
+        	currentIndex++;
+        }
+
+      images[currentIndex].classList.add('main');
+      
+    }
+    
+    // Function to go to previous Image
+    function previousImage(){
+
+      images[currentIndex].classList.remove('main');
+    	if(currentIndex == 0){
+        	currentIndex = totalImages-1;
+        }
+        else{
+        	currentIndex--;
+        }
+    
+      images[currentIndex].classList.add('main');
+
+    }
 </script>
