@@ -4,8 +4,24 @@ const limit = 3
 const skip = 3
 
 //Login 
-const showIndex = (req, res) => {
-    res.render("userViews/index");
+const showIndex = async (req, res) => {
+    const method = "GET"
+    const urlEnd = `all-entries/4/0`
+    try {
+        const data = await consultation(`${process.env.URLBASE}${urlEnd}`, method);
+        if (data.ok) {
+            const entries = data.entries
+            //console.log("entries", entries)
+
+            res.render("userViews/index", {
+                entries
+            });
+        } else {
+            throw data.msg
+        }
+    } catch (error) {
+        res.render("userViews/index");
+    }
 }
 
 const getAllEntries = async (req, res) => {
@@ -16,11 +32,13 @@ const getAllEntries = async (req, res) => {
         const data = await consultation(`${process.env.URLBASE}${urlEnd}`, method);
         if (data.ok) {
             const entries = data.entries
+            //console.log("entries", entries)
             const entryCount = await getPages()
             const pages = Math.ceil(entryCount / limit)
             res.render("userViews/showAllEntries", {
                 entries,
-                pages
+                pages,
+                page
             });
         } else {
             throw data.msg
@@ -77,7 +95,8 @@ const searchEntry = async (req, res) => {
             res.render("userViews/searchResults", {
                 entries,
                 search,
-                pages
+                pages,
+                page
             });
         } else {
             throw data.msg

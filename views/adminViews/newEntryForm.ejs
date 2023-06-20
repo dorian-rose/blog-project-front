@@ -10,6 +10,7 @@
   autocomplete="on"
     >
   <input
+  required
     type="text"
     name="title"
     id="title"
@@ -18,24 +19,26 @@
   
   
   <input
+  required
     type="text"
     name="extract"
     id="extract"
     placeholder= "Title extract"
   />
-  <textarea name="content" id="content">
+  <textarea required name="content" id="content">
 Article content</textarea>
 
-<input type="file" id="image" name="image" placeholder="Article image" > 
+<input required type="file" id="image" name="image" placeholder="Article image" > 
 
   <input
+  required
     type="text"
     name="category"
     id="category"
     placeholder= "Article category"
   />
   
-  <input class="submit" type="submit" />
+  <input  class="submit" type="submit" />
 </form >
  
 </article>

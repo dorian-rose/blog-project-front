@@ -38,7 +38,16 @@
         type="search"
         value=<%=search%>
       />
-      <input class="buttons" type="submit" value=<%- index %> />
+
+
+<% if (index == page) { %>
+ <input class="active" type="submit" value=<%- index %> />
+<%} else { %>
+ <input class="buttons" type="submit" value=<%- index %> />
+<% } %>
+
+
+     
     </form>
 
 <% } %>

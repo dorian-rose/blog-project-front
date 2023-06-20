@@ -19,11 +19,18 @@ const showAdminLoginPage = (req, res) => {
     res.render("userViews/login-form-admin");
 }
 
+/**
+ * 
+ * @param {Object} req 
+ * @param {Object} res 
+ */
 const loginUserAuthor = async (req, res) => {
+
     const method = "POST"
     const body = req.body
     const urlEnd = '/author'
     let data;
+
     try {
         data = await consultation(process.env.URLBASEUSERS + urlEnd, method, body);
         if (data.ok) {
@@ -62,7 +69,8 @@ const getEntries = async (req, res) => {
             res.render("adminViews/showEntries", {
                 entries,
                 email,
-                pages
+                pages,
+                page
             });
         } else {
             throw data.msg
@@ -123,8 +131,10 @@ const showNewEntriesForm = (req, res) => {
  * @param {Object} res 
  */
 const createEntry = async (req, res) => {
+    console.log("in create")
 
     const { email } = req.params
+
     const body = req.body
     body.image = req.file.filename
 
@@ -132,18 +142,23 @@ const createEntry = async (req, res) => {
     const urlEnd = `create/${email}`
     let data;
     try {
+
+
         data = await consultation(`${process.env.URLBASE}${urlEnd}`, method, body);
         if (!data.ok) {
             throw data.errors
         } else {
-            console.log("create cont", email)
+
             res.redirect(`/admin/entries/${email}/1`)
         }
+
 
     } catch (error) {
         res.render("adminViews/newEntryForm", { email, error });
     }
+
 }
+
 
 /**
  * 
@@ -187,14 +202,14 @@ const updateEntry = async (req, res) => {
     const method = "PUT"
     try {
         const body = req.body;
-        console.log(body)
-        if (typeof filename !== 'undefined') {
+
+        if (typeof req.file !== 'undefined') {
             body.image = req.file.filename
         } else {
             body.image = body.picture
         }
 
-        data = await consultation(`${process.env.URLBASE}${urlEnd}`, method, body);
+        const data = await consultation(`${process.env.URLBASE}${urlEnd}`, method, body);
         if (!data.ok) {
             throw data.errors
         } else {
@@ -223,7 +238,7 @@ const deleteEntry = async (req, res) => {
     try {
         const body = { title, "author": email };
         console.log(title, email, body)
-        data = await consultation(`${process.env.URLBASE}${urlEnd}`, method, body);
+        let data = await consultation(`${process.env.URLBASE}${urlEnd}`, method, body);
         if (!data.ok) { throw data.msg }
     } catch (error) {
         console.log(error)

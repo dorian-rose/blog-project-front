@@ -24,7 +24,17 @@
 
   <div class="page-number-div">
 <% for( let index = 1; index <= pages; index++ ) { %>
+
+  
+
+<% if (index == page) { %>
+<a class="active" href=<%=`/entries/${index}`%> > <%- index %></a>
+<%} else { %>
 <a class="buttons" href=<%=`/entries/${index}`%> > <%- index %></a>
+<% } %>
+
+
+
 <% } %>
  </div>
  

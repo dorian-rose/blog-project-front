@@ -3,7 +3,35 @@ include('./userTemplates/navUser') %>
 
 <h1>News!</h1>
 
-<a class="index-buttons" href="/">View latest stories </a>
+<h2 class="home-h2" >View latest stories </h2>
+
+
+
+<div class="slider">
+<div class="images">
+<% entries.forEach((entries, i) => { %>
+ <% if (i == 0) { %>
+<input checked type="radio" name="slide" id="<%=`img${i+1}`%>"  onchange="updateActiveClass(<%- i+1 %>)">
+<%} else { %>
+<input type="radio" name="slide" id="<%=`img${i+1}`%>" onchange="updateActiveClass(<%- i+1 %>)" >
+<% } %>
+ 
+<% }) %>
+<div class="grid grid-1-2">
+  <% entries.forEach((entry, i) => { %> <img class="<%=`m${i+1}`%>"  src=<%=`/uploads/${entry.image}`%>
+  alt="<%=`img${i+1}`%>" /> <% }) %>
+
+</div></div>
+<div class="dots">
+<% entries.forEach((entry, i) => { %>
+  
+ <label <% if (i==0) { %>
+  class="dot-checked"
+ <% } %> for="<%=`img${i+1}`%>" ></label>
+<% }) %>
+</div>
+</div>
+
 <a class="index-buttons" href="/entries/1">View all articles </a>
 <a class="buttons" href="/admin/login">Login as author</a>
 
@@ -16,3 +44,17 @@ include('./userTemplates/navUser') %>
 </div>
 
 <%- include("./userTemplates/footerUser") %>
+
+<script>
+  const updateActiveClass=(index) =>{
+    const labels = document.querySelectorAll('.dots label');
+ 
+    labels.forEach((label, i) => {
+      if (i === index - 1) {
+        label.classList.add('dot-checked');
+      } else {
+        label.classList.remove('dot-checked');
+      }
+    });
+  }
+</script>

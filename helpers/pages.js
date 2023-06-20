@@ -4,8 +4,8 @@ const { consultation } = require("../helpers/fetch")
 /**
  *  
  * @param {String} email author email
- * @param {String} search search term or word
- * @returns {String}
+ * @param {String} [search] search term or word
+ * @returns {Promise}
  * @catch {error}
  */
 
