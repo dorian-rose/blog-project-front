@@ -1,5 +1,12 @@
 
-
+/**
+ * 
+ * @param {String} url URL direction to API 
+ * @param {String} method 
+ * @param {Object} [body ] if applicable, body of API request 
+ * @returns {Object}
+ * @catch {error}
+ */
 const consultation = async (url, method, body = {}) => {
 
     let options = {};
@@ -9,6 +16,8 @@ const consultation = async (url, method, body = {}) => {
         const titleSpaced = data.title.replaceAll("_", " ")
         data.title = titleSpaced
     }
+
+    console.log(url, "method", method, "body", body)
 
     try {
         if (method == "POST" || method == "PUT" || method == "DELETE") {
@@ -24,8 +33,8 @@ const consultation = async (url, method, body = {}) => {
 
         const response = await fetch(url, options);
         const respData = await response.json();
-
         return respData;
+
 
     } catch (error) {
         console.log('FAILED while fetching', error)

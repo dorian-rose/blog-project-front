@@ -1,7 +1,12 @@
 <%- include("./userTemplates/headerUser") %><%-
 include("./userTemplates/navUser") %>
 <h1>Author login</h1>
-<form id="login-form" action="/admin/author/verification" method="post">
+<form
+  id="login-form"
+  action="/admin/author/verification"
+  method="post"
+  autocomplete="on"
+>
   <input type="text" name="email" id="email" placeholder="Enter email" />
 
   <input
@@ -11,7 +16,7 @@ include("./userTemplates/navUser") %>
     placeholder="Enter password"
   />
 
-  <input type="submit" />
+  <input class="submit" type="submit" />
 </form>
 
 <div class="error-message">

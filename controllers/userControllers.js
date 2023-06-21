@@ -4,8 +4,24 @@ const limit = 3
 const skip = 3
 
 //Login 
-const showIndex = (req, res) => {
-    res.render("userViews/index");
+const showIndex = async (req, res) => {
+    const method = "GET"
+    const urlEnd = `all-entries/4/0`
+    try {
+        const data = await consultation(`${process.env.URLBASE}${urlEnd}`, method);
+        if (data.ok) {
+            const entries = data.entries
+            //console.log("entries", entries)
+
+            res.render("userViews/index", {
+                entries
+            });
+        } else {
+            throw data.msg
+        }
+    } catch (error) {
+        res.render("userViews/index");
+    }
 }
 
 const getAllEntries = async (req, res) => {
@@ -16,11 +32,13 @@ const getAllEntries = async (req, res) => {
         const data = await consultation(`${process.env.URLBASE}${urlEnd}`, method);
         if (data.ok) {
             const entries = data.entries
+            //console.log("entries", entries)
             const entryCount = await getPages()
             const pages = Math.ceil(entryCount / limit)
             res.render("userViews/showAllEntries", {
                 entries,
-                pages
+                pages,
+                page
             });
         } else {
             throw data.msg
@@ -64,6 +82,11 @@ const searchEntry = async (req, res) => {
     const urlEnd = `search/${search}/${limit}/${skip * (page - 1)}`
     let data;
     try {
+        if (!search) {
+            return res.render("userViews/searchForm", {
+                error: "Search is empty"
+            });
+        }
         data = await consultation(`${process.env.URLBASE}${urlEnd}`, method);
         if (data.ok) {
             const entryCount = await getPages(null, search)
@@ -72,7 +95,8 @@ const searchEntry = async (req, res) => {
             res.render("userViews/searchResults", {
                 entries,
                 search,
-                pages
+                pages,
+                page
             });
         } else {
             throw data.msg
@@ -84,39 +108,6 @@ const searchEntry = async (req, res) => {
     }
 }
 
-//Login 
-const showLoginPage = (req, res) => {
-    res.render("userViews/login-form");
-}
 
 
-const loginUserReader = async (req, res) => {
-    const method = "POST"
-    const body = req.body
-    let data;
-    try {
-        data = await consultation(process.env.URLBASEUSERS, method, body);
-        console.log(data)
-        if (data.ok) {
-            res.cookie('email', body.email, { http: true, secure: true, sameSite: 'strict', expires: new Date('2023-12-20') })
-            req.header.authorization = data.token
-            res.redirect("/entries/1")
-        } else {
-            throw data.msg
-        }
-
-    } catch (error) {
-        res.render("userViews/login-form", { error })
-    }
-};
-
-
-
-const logout = (req, res) => {
-    res.clearCookie('email')
-    res.redirect("/")
-}
-
-
-
-module.exports = { getAllEntries, getEntry, showSearchForm, searchEntry, showLoginPage, loginUserReader, showIndex, logout, }
+module.exports = { getAllEntries, getEntry, showSearchForm, searchEntry, showIndex, }

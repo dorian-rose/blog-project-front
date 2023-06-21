@@ -1,13 +1,12 @@
+
 <nav>
-    <ul>
-      <li >
-        <a  href=<%=`/admin/entries/${email}/1`%>>All your entries </a>
-      </li>
-      <li >
-        <a  href=<%=`/admin/form/new/${email}`%> >Create New Entry</a>
-      </li>
-      <li>
-      <a href="/logout">Logout</a>
-    </li>
-    </ul>
+  <input type="checkbox" id="check" />
+  <label for="check" class="hamburger-btn">
+    <i class="fa-solid fa-bars"></i>
+  </label>
+  <ul class="nav-list">
+    <li><a  href=<%=`/admin/entries/${email}/1`%>>All your entries </a></li>
+    <li><a  href=<%=`/admin/form/new/${email}`%> >Create New Entry</a></li>
+    <li><a href="/admin/logout">Logout</a></li>
+  </ul>
 </nav>

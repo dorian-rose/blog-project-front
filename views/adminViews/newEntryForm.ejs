@@ -6,8 +6,11 @@
 <form
   id="create-entry"
   action=<%= `/admin/create/${email}` %>
-    method="post" enctype="multipart/form-data">
+  method="post" enctype="multipart/form-data"
+  autocomplete="on"
+    >
   <input
+  required
     type="text"
     name="title"
     id="title"
@@ -16,24 +19,26 @@
   
   
   <input
+  required
     type="text"
     name="extract"
     id="extract"
     placeholder= "Title extract"
   />
-  <textarea name="content" id="content">
+  <textarea required name="content" id="content">
 Article content</textarea>
 
-<input type="file" id="image" name="image" placeholder="Article image" > 
+<input required type="file" id="image" name="image" placeholder="Article image" > 
 
   <input
+  required
     type="text"
     name="category"
     id="category"
     placeholder= "Article category"
   />
   
-  <input type="submit" />
+  <input  class="submit" type="submit" />
 </form >
  
 </article>

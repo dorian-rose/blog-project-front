@@ -1,8 +1,106 @@
-<%- include("./userTemplates/headerUser") %>
+<%- include("./userTemplates/headerUser") %> <%-
+include('./userTemplates/navUser') %>
 
-<h1>Login</h1>
+<h1>News!</h1>
+<p class="welcome-p">Welcome to our vibrant and diverse blog, where knowledge meets inspiration! Whether you're seeking the latest news updates, embarking on thrilling travel adventures, delving into the intricate world of finance, or indulging in the excitement of sports, you've come to the right place. Our platform is designed to inform, engage, and entertain readers with a rich tapestry of articles covering a wide range of topics.</p>
 
-<a class="buttons" href="/login">Login</a>
-<a class="buttons" href="/admin/login">Login as author</a>
+<h2 class="home-h2" >View latest stories </h2>
 
-<%- include("./userTemplates/footerUser") %>
+
+<section id="parent-container">
+<!-- button  div -->
+  <div class="navigation-buttons">
+  <div class="previous nav-btn"><</div>
+  <div class="next nav-btn">></div>
+</div>
+<!-- This div will contain all images and buttons we will be using for Slider
+-->
+<div class="slider-carousel">
+
+<% entries.forEach((entry, i) => { %>
+  <article
+  <% if (i ==0) { %>
+class="images main"
+<%} else { %>
+class="images"
+<% } %>
+  
+  >
+  <div class="grid grid-1-2">
+        <img src=<%=`/uploads/${entry.image}`%> alt=<%= entry.title %> />
+        <div class="image-text">
+          <div class="vertical-centre">
+           <h3><%= entry.title %></h3>
+          <h4><%= entry.extract %></h4>
+          <p class="overflow-hidden"><%= entry.content %></p>
+          <a href=<%= `/entry/${entry.title.replaceAll(" ", "_")}/${entry.email} `%> >Read more</a>
+        </div>
+      </div>
+
+</div>
+
+</article>
+<% }) %>
+
+
+    </div>
+    <!-- end slider div -->
+
+  </section>
+  <section class="top-border"><a class="buttons" href="/admin/login">Login as author</a></section>
+ 
+<%- include("./userTemplates/footerUser") %> 
+
+<script>
+  const previous = document.querySelector('.previous');
+    const next = document.querySelector('.next');
+    const images = document.querySelector('.slider-carousel').children;
+    const totalImages = images.length;
+    let currentIndex = 0;
+
+
+	// Event Listeners to previous and next buttons
+    previous.addEventListener('click', () => {
+      previousImage()
+    })
+
+    next.addEventListener('click', () => {
+      nextImage();
+    })
+    
+    
+  setInterval(()=>{
+     	nextImage();
+     },3000);
+    
+
+    // Function to go to next Image
+    function nextImage(){
+
+      images[currentIndex].classList.remove('main');
+    	if(currentIndex == totalImages-1){
+        	currentIndex = 0;
+        }
+        else{
+        	currentIndex++;
+        }
+
+      images[currentIndex].classList.add('main');
+      
+    }
+    
+    // Function to go to previous Image
+    function previousImage(){
+
+      images[currentIndex].classList.remove('main');
+    	if(currentIndex == 0){
+        	currentIndex = totalImages-1;
+        }
+        else{
+        	currentIndex--;
+        }
+    
+      images[currentIndex].classList.add('main');
+
+    }
+</script>
