@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+
 /**
  * 
  * @param {String} url URL direction to API 
