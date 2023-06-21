@@ -55,6 +55,12 @@ img {
   width: 100%;
 }
 
+a {color: var(--feature);
+text-decoration: none;}
+
+a:hover {color: var(--feature);
+text-decoration: underline;}
+
 .top-border {
   margin: 60px 20px 10px 20px;
   padding: 20px 30px 20px 50px;
@@ -66,7 +72,7 @@ img {
 nav {
   height: 50px;
   width: 100%;
-  background-color: var(--dark);
+  background-color: var(--medium);
   display: flex;
   justify-content: space-between;
 }
@@ -74,7 +80,7 @@ nav {
   position: relative;
   left: 75%;
   font-size: 30px;
-  color: var(--light);
+  color: var(--feature);
   line-height: 50px;
   cursor: pointer;
 }
@@ -87,10 +93,11 @@ nav {
   display: inline;
   width: fit-content;
   height: 0;
-  background: var(--dark);
+  background-color: var(--medium);
   opacity: 0.9;
   text-align: center;
   transition: all 0.5s;
+  border-bottom-left-radius: 7%;
 }
 
 .nav-list li {
@@ -101,8 +108,8 @@ nav {
 }
 
 .nav-list li a {
-  font-weight: bold;
-  color: #ffffff;
+  font-weight: normal;
+  color: var(--feature);
   font-size: 20px;
   text-decoration: none;
   transition: all 0.5s;
@@ -110,7 +117,7 @@ nav {
 
 .nav-list li a.active,
 .nav-list li a:hover {
-  color: white;
+  font-weight: bold;
   transition: 0.5s;
 }
 
@@ -316,16 +323,10 @@ input.submit:hover {
 
 
 /* homepage slider  */
-#parent-container {
-  
-}
 
 .carousel-container {
-
   height: 400px;
   position: relative;
-
-
 }
 
 .navigation-buttons .previous {
@@ -390,7 +391,8 @@ input.submit:hover {
 }
 
 .image-text {
-  margin: 10px 10px 0 0;
+  position: relative;
+  margin: 10px 10px 10px 0;
   display: flex;
   flex-direction: column;
 }
@@ -402,15 +404,17 @@ margin-top: 10px;
 }
 
 .image-text h4 {
-  margin-top: 0;
+  margin-top: 20px;
  
 }
 
 .image-text a {
   color: var(--feature);
   text-decoration: none;
- 
+  
 }
+
+
 .image-text a:hover {
   
   text-decoration: underline;
@@ -445,10 +449,15 @@ margin-top: 10px;
 /*=================================================*/
 /*==768 px=*/
 @media screen and (min-width: 768px) {
+  .vertical-centre {
+   position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
   /* nav */
   nav {
     height: 80px;
-    background-color: var(--dark);
+    background-color: var(--medium);
     transition: none;
   }
 
@@ -472,7 +481,7 @@ margin-top: 10px;
   }
 
   .nav-list li a {
-    color: #939292;
+    color: var(--feature);
   }
 
   /* end nav */

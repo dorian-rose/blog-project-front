@@ -29,11 +29,13 @@ class="images"
   <div class="grid grid-1-2">
         <img src=<%=`/uploads/${entry.image}`%> alt=<%= entry.title %> />
         <div class="image-text">
+          <div class="vertical-centre">
            <h3><%= entry.title %></h3>
           <h4><%= entry.extract %></h4>
           <p class="overflow-hidden"><%= entry.content %></p>
           <a href=<%= `/entry/${entry.title.replaceAll(" ", "_")}/${entry.email} `%> >Read more</a>
         </div>
+      </div>
 
 </div>
 

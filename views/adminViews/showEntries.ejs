@@ -3,7 +3,7 @@
 
 <% if (typeof error !== 'undefined') { %>
 <div class="error-message"></div>
-           <p><%= error %> </p>
+           <p><%= error %> <a  href=<%=`/admin/form/new/${email}`%> >Create New Entry</a></p>
 </div>
         <% }  else { %>
           
