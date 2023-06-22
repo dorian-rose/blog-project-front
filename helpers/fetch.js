@@ -4,7 +4,6 @@
  * @param {String} url URL direction to API 
  * @param {String} method 
  * @param {Object} [body ] if applicable, body of API request 
- * @returns {Object}
  * @catch {error}
  */
 const consultation = async (url, method, body = {}) => {
