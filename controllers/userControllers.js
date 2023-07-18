@@ -11,7 +11,7 @@ const showIndex = async (req, res) => {
         const data = await consultation(`${process.env.URLBASE}${urlEnd}`, method);
         if (data.ok) {
             const entries = data.entries
-            //console.log("entries", entries)
+            console.log("entries", entries)
 
             res.render("userViews/index", {
                 entries

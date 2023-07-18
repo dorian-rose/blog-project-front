@@ -1,5 +1,5 @@
 <%- include('./userTemplates/headerUser') %> <%- include('./userTemplates/navUser') %> 
-<h1>Articles relating to "<%= search %>"</h1>
+<h1 class="search">Articles relating to "<%= search %>"</h1>
 <% if (typeof error !== 'undefined') { %>
 <div class="error-message"></div>
            <p><%= error %> </p>
