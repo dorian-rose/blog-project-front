@@ -14,7 +14,6 @@
   box-sizing: border-box;
   text-decoration: none;
   list-style: none;
-
 }
 
 header {
@@ -55,11 +54,15 @@ img {
   width: 100%;
 }
 
-a {color: var(--feature);
-text-decoration: none;}
+a {
+  color: var(--feature);
+  text-decoration: none;
+}
 
-a:hover {color: var(--feature);
-text-decoration: underline;}
+a:hover {
+  color: var(--feature);
+  text-decoration: underline;
+}
 
 .top-border {
   margin: 60px 20px 10px 20px;
@@ -67,6 +70,30 @@ text-decoration: underline;}
   border-top: var(--feature) solid 1px;
 }
 
+/* search results */
+
+h1.search {
+  margin-top: 50px;
+}
+
+/* detail page */
+
+.detail p {
+  margin-top: 30px;
+}
+
+.detail .extract {
+  font-size: 25px;
+  color: var(--feature);
+}
+
+.detail .content {
+  line-height: 2;
+}
+
+.detail img {
+  max-width: 600px;
+}
 
 /* nav */
 nav {
@@ -201,7 +228,6 @@ label {
 }
 /* end form  */
 footer {
- 
   background-color: var(--dark);
   padding: 40px;
   text-align: center;
@@ -219,7 +245,7 @@ footer a {
 
 .article-container {
   display: grid;
-  gap: 20px;
+
   padding: 20px 10% 50px;
   margin: 20px 0;
 }
@@ -227,7 +253,7 @@ footer a {
 .article-card,
 .one-article-card {
   background-color: var(--medium);
-  padding: 20px;
+  padding: 5px;
   width: fit-content;
   margin: 20px auto;
 }
@@ -317,10 +343,9 @@ input.submit:hover {
 /* homepage */
 .welcome-p {
   padding: 20px 0 30px 0;
-  margin: 0 20px 0 20px ;
+  margin: 0 20px 0 20px;
   border-bottom: var(--feature) solid 1px;
 }
-
 
 /* homepage slider  */
 
@@ -328,25 +353,31 @@ input.submit:hover {
   height: 400px;
   position: relative;
 }
+#parent-container {
+  position: relative;
+}
+
+.navigation-buttons {
+  display: block;
+  width: 100%;
+  position: absolute;
+  top: 45%;
+  /* transform: translateY(-60%); */
+}
 
 .navigation-buttons .previous {
   position: absolute;
-  z-index: 10;
-  font-size: 25px;
-  top: 60%;
-  left: 10px;
-  font-weight: 700;
+  right: 90%;
 }
 
 .navigation-buttons .next {
-  right: 10px;
   position: absolute;
-  font-size: 25px;
-  z-index: 10;
-  top: 60%;
+  left: 90%;
 }
 
 .navigation-buttons .nav-btn {
+  font-size: 25px;
+  z-index: 10;
   background: rgba(255, 255, 255, 0.55);
   cursor: pointer;
   border-radius: 50%;
@@ -366,16 +397,16 @@ input.submit:hover {
 /* carousel  */
 
 .slider-carousel {
- 
   margin: 20px 60px;
   transition: all 0.3s ease;
-
 }
 .slider-carousel img {
   width: 100%;
   transition: all 0.3s ease;
-  border:8px solid var(--medium);
-
+  border: 8px solid var(--medium);
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .images {
@@ -391,6 +422,7 @@ input.submit:hover {
 }
 
 .image-text {
+  padding: 10px 20px;
   position: relative;
   margin: 10px 10px 10px 0;
   display: flex;
@@ -398,29 +430,23 @@ input.submit:hover {
 }
 
 .image-text h3 {
-margin-top: 10px;
+  margin-top: 10px;
   font-size: 30px;
   color: var(--feature);
 }
 
 .image-text h4 {
   margin-top: 20px;
- 
 }
 
 .image-text a {
   color: var(--feature);
   text-decoration: none;
-  
 }
-
 
 .image-text a:hover {
-  
   text-decoration: underline;
- 
 }
-
 
 .overflow-hidden {
   max-height: 100%;
@@ -431,29 +457,33 @@ margin-top: 10px;
   -webkit-box-orient: vertical;
 }
 
-.grid {display: grid;}
+.grid {
+  display: grid;
+}
 
-.grid-1-2 {grid-template-columns: 1fr}
-
+.grid-1-2 {
+  grid-template-columns: 1fr;
+}
 
 /*=================================================*/
 /*==548 px=*/
-@media screen and (min-width: 548px) { 
-  
-  .grid-1-2 {grid-template-columns: 1fr 1fr}
-
-
+@media screen and (min-width: 548px) {
+  .grid-1-2 {
+    grid-template-columns: 1fr 1fr;
+  }
+  .slider-carousel h3 {
+    font-size: 20px;
+  }
 }
-
 
 /*=================================================*/
 /*==768 px=*/
 @media screen and (min-width: 768px) {
   .vertical-centre {
-   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-}
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
   /* nav */
   nav {
     height: 80px;
@@ -492,6 +522,8 @@ margin-top: 10px;
 
   .article-container {
     grid-template-columns: repeat(2, 1fr);
+
+    padding: 20px 5px 50px;
   }
 
   #login-form input[type="text"],
@@ -501,7 +533,10 @@ margin-top: 10px;
   #login-form input[type="submit"] {
     width: 50%;
   }
-  
+
+  .slider-carousel h3 {
+    font-size: 30px;
+  }
 }
 
 /*==996 px=*/

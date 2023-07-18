@@ -16,7 +16,7 @@ const consultation = async (url, method, body = {}) => {
         data.title = titleSpaced
     }
 
-    console.log(url, "method", method, "body", body)
+   // console.log(url, "method", method, "body", body)
 
     try {
         if (method == "POST" || method == "PUT" || method == "DELETE") {
