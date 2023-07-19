@@ -6,7 +6,11 @@ include('./userTemplates/navUser') %>
 
 <h2 class="home-h2" >View latest stories </h2>
 
-
+<% if (typeof entries === 'undefined') { %>
+<div ></div>
+           <p>Loading stories...</p>
+</div>
+        <% }  else { %>
 <section id="parent-container">
 <!-- button  div -->
   <div class="navigation-buttons">
@@ -47,6 +51,9 @@ class="images"
     <!-- end slider div -->
 
   </section>
+
+<% } %>
+
   <section class="top-border"><a class="buttons" href="/admin/login">Login as author</a></section>
  
 <%- include("./userTemplates/footerUser") %> 
