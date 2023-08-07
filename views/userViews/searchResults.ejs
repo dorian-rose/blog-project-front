@@ -1,10 +1,17 @@
 <%- include('./userTemplates/headerUser') %> <%- include('./userTemplates/navUser') %> 
 <h1 class="search">Articles relating to "<%= search %>"</h1>
+
+
 <% if (typeof error !== 'undefined') { %>
-<div class="error-message"></div>
+<div class="error-message">
            <p><%= error %> </p>
 </div>
+        <% }  else if (typeof entries === 'undefined') { %>
+<div class="error-message" >
+           <p>Error finding stories...</p>
+</div>
         <% }  else { %>
+
 
 
 <section class="entries-users">
